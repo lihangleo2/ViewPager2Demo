@@ -1,0 +1,2 @@
+# ViewPager2Demo
+关于封装ViewPager2的FragmentStateAdapter，以最简单的方式动态实现，ViewPager2的动态向顶部加载数据，动态向底部加载数据，以及触发预加载接口回调
