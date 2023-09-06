@@ -16,8 +16,16 @@
     <Button
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/button"
-        android:text="测试"
+        android:id="@+id/buttonFront"
+        android:text="模拟向上加载数据"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        app:layout_constraintTop_toBottomOf="@+id/buttonFront"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/buttonBack"
+        android:text="模拟向下加载数据"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

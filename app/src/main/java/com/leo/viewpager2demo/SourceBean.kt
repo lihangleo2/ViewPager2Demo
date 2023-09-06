@@ -10,5 +10,10 @@ data class SourceBean(
     var id:Int,
     var text:String,
     var image:Int,
-    var type:Int
-):Serializable
+    var type:Int,
+    var createTime:Long = System.currentTimeMillis()
+):SmartViewPager2TypeCallback {
+    override fun onRefresh(): String {
+        return type.toString()
+    }
+}

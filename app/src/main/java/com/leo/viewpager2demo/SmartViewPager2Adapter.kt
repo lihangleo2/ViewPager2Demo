@@ -4,82 +4,243 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.blankj.utilcode.util.LogUtils
 
 /**
- * @ClassName
- * @Description InnerPagerState2Adapter
- * @Author Charity
- * @Date 2021/1/27
- * @Version 1.0
+ * @Author leo2
+ * @Date 2023/9/4
  */
 class SmartViewPager2Adapter : FragmentStateAdapter {
-    private val dataList = mutableListOf<SourceBean>()
+    private val mDataList = mutableListOf<SourceBean>()
+    private val mPreloadDataList = mutableListOf<SourceBean>()
     private lateinit var mViewPager2: ViewPager2
+    private var mRefreshListener: OnRefreshListener? = null
+    private var mLoadMoreListener: OnLoadMoreListener? = null
 
-    constructor(fragmentActivity: FragmentActivity,bindViewPager2: ViewPager2) : super(fragmentActivity){
+    //预加载litmit,当滑动到只剩余limit个数后，触发加载刷新监听
+    //如果，当前个数小于mPreLoadLimit*2+1时，优先触发loadMore监听
+    private var mPreLoadLimit: Int = 3
+
+
+    constructor(fragmentActivity: FragmentActivity, bindViewPager2: ViewPager2) : super(fragmentActivity) {
         this.mViewPager2 = bindViewPager2
-        registerOnPageChange()
+        initSmartViewPager()
     }
 
-    constructor(fragment: Fragment) : super(fragment)
+    constructor(fragment: Fragment, bindViewPager2: ViewPager2) : super(fragment) {
+        this.mViewPager2=bindViewPager2
+        initSmartViewPager()
+    }
 
-    constructor(fragmentManager: FragmentManager, lifecycle: Lifecycle) : super(
-        fragmentManager,
-        lifecycle
-    )
+    constructor(fragmentManager: FragmentManager, lifecycle: Lifecycle, bindViewPager2: ViewPager2) : super(fragmentManager, lifecycle) {
+        //源码都会走这里
+        this.mViewPager2 = bindViewPager2
+        initSmartViewPager()
+    }
 
+
+    fun setOnRefreshListener(listener: OnRefreshListener): SmartViewPager2Adapter {
+        this.mRefreshListener = listener
+        return this
+    }
+
+    fun setLoadMoreListener(listener: OnLoadMoreListener): SmartViewPager2Adapter {
+        this.mLoadMoreListener = listener
+        return this
+    }
+
+    fun setOnRefreshLoadMoreListener(listener: OnRefreshLoadMoreListener): SmartViewPager2Adapter {
+        this.mRefreshListener = listener
+        this.mLoadMoreListener = listener
+        return this
+    }
 
 
     override fun createFragment(position: Int): Fragment {
-        var bean = dataList[position]
+        var bean = mDataList[position]
         return ImageFragment.newInstance(bean)
     }
 
-    override fun getItemCount() = dataList.size
+    override fun getItemCount() = mDataList.size
 
     override fun getItemId(position: Int): Long {
-        return dataList[position].hashCode().toLong()
+        return mDataList[position].hashCode().toLong()
     }
 
-    fun addData(list: MutableList<SourceBean>) {
+    fun addData(list: MutableList<SourceBean>) :SmartViewPager2Adapter{
         if (list.isNullOrEmpty()) {
-            return
+            return this
         }
-        var lastIndex = dataList.size
-        dataList.addAll(list)
-        notifyItemRangeChanged(lastIndex,list.size)
+        var lastIndex = mDataList.size
+        mDataList.addAll(list)
+        notifyItemRangeChanged(lastIndex, list.size)
+        updateRefreshLoadMoreState()
+        return this
     }
 
-    fun addFrontData(list: MutableList<SourceBean>) {
+    fun addData(bean: SourceBean) :SmartViewPager2Adapter{
+        if (bean == null) {
+            return this
+        }
+        var lastIndex = mDataList.size
+        mDataList.add(bean)
+        notifyItemRangeChanged(lastIndex, 1)
+        updateRefreshLoadMoreState()
+        return this
+    }
+
+    fun addFrontData(list: MutableList<SourceBean>) :SmartViewPager2Adapter{
         if (list.isNullOrEmpty()) {
-            return
+            return this
         }
-        dataList.addAll(0, list)
+        mPreloadDataList.addAll(0, list)
+        updateWithIdel(mViewPager2.scrollState)
+        return this
     }
 
-    public fun getDataList(): MutableList<SourceBean> {
-        return dataList
+    fun addFrontData(bean: SourceBean) :SmartViewPager2Adapter {
+        if (bean == null) {
+            return this
+        }
+        mPreloadDataList.add(0, bean)
+        updateWithIdel(mViewPager2.scrollState)
+        return this
     }
 
-    private fun registerOnPageChange(){
-        if (mViewPager2==null){
-            throw IllegalArgumentException(
-                    "the bindView viewPager2 can not be null");
+
+    fun getDataList(): MutableList<SourceBean> {
+        return mDataList
+    }
+
+    private fun initSmartViewPager() {
+
+        if (mViewPager2 == null) {
+            throw IllegalArgumentException("the bindView viewPager2 can not be null");
         }
 
-        //SmartViewPager2Adapter里的监听，用于处理预加载，以及在ViewPager2空闲的时候，处理加载向上插入的数据
         mViewPager2.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrollStateChanged(state: Int) {
                 super.onPageScrollStateChanged(state)
-                LogUtils.dTag("这两个监听怎么走呢","----------来自Adapter")
+                updateWithIdel(state)
             }
 
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (mLoadMoreListener != null) {
+                    registLoadMoreOrNot(position)
+                }
+                if (mRefreshListener != null) {
+                    registRefreshOrNot(position)
+                }
+            }
         })
+
+        //在页面onCreate的时候，设置给mViewPager2，简化用户使用
+//        mViewPager2.adapter = this
+//        mLifecycle?.addObserver(object : LifecycleEventObserver {
+//            override fun onStateChanged(source: LifecycleOwner,
+//                                        event: Lifecycle.Event) {
+//                if (event == Lifecycle.Event.ON_CREATE) {
+//                    LogUtils.dTag("生命周期没有触发吗","ON_CREATE")
+//                    mViewPager2.adapter = this@SmartViewPager2Adapter
+//                    source.lifecycle.removeObserver(this)
+//                }else if (event == Lifecycle.Event.ON_RESUME){
+//                    LogUtils.dTag("生命周期没有触发吗","ON_RESUME====")
+//                }
+//            }
+//        })
     }
+
+
+    /**
+     * 空闲时才去更新数据
+     * */
+    private fun updateWithIdel(state: Int) {
+        if (state == ViewPager2.SCROLL_STATE_IDLE && mPreloadDataList.isNotEmpty()) {
+            var tempSize = mDataList.size
+            mDataList.addAll(0, mPreloadDataList)
+            if (tempSize == 0) {
+                //初始化数据为空时，front只能走notifyDataSetChanged
+                notifyDataSetChanged()
+            } else {
+                mViewPager2.setCurrentItem(mPreloadDataList.size + mViewPager2.currentItem, false)
+            }
+            mPreloadDataList.clear()
+            updateRefreshLoadMoreState()
+        }
+    }
+
+
+    fun cancleOverScrollMode(): SmartViewPager2Adapter {
+        ViewPager2Util.cancleViewPagerShadow(mViewPager2)
+        return this
+    }
+
+    fun setOffscreenPageLimit(limit: Int): SmartViewPager2Adapter {
+        mViewPager2.offscreenPageLimit = limit
+        return this
+    }
+
+    fun setPreLoadLimit(preLoadLimit: Int): SmartViewPager2Adapter {
+        this.mPreLoadLimit = preLoadLimit
+        return this
+    }
+
+
+    private var hasRefresh = true
+    private var isRefreshing = false
+    private fun registRefreshOrNot(currentPosition: Int) {
+        //刷新和加载，同一时间段只允许一个进行(直至数据返回，或主动调用finishWithNoData)
+        if (!hasRefresh || isRefreshing || isLoadMoring) {
+            return
+        }
+
+        if (currentPosition <= mPreLoadLimit) {
+            isRefreshing = true
+            mRefreshListener?.onRefresh(this)
+        }
+    }
+
+    private fun updateRefreshLoadMoreState() {
+        isRefreshing = false
+        isLoadMoring = false
+    }
+
+
+    private var hasLoadMore = true
+    private var isLoadMoring = false
+    private fun registLoadMoreOrNot(currentPosition: Int) {
+        if (!hasLoadMore || isLoadMoring || isRefreshing) {
+            return
+        }
+
+        val realPosition: Int = getDataList().size - 1 - currentPosition
+        if (realPosition <= mPreLoadLimit) {
+            isLoadMoring = true
+            mLoadMoreListener?.onLoadMore(this)
+        }
+    }
+
+
+    /**
+     * 调用此方法将不再触发refresh监听
+     * */
+    fun finishRefreshWithNoMoreData() {
+        hasRefresh = false
+        updateRefreshLoadMoreState()
+    }
+
+
+    /**
+     * 调用此方法将不再触发LoadMore监听
+     * */
+    fun finishLoadMoreWithNoMoreData() {
+        hasLoadMore = false
+        updateRefreshLoadMoreState()
+    }
+
 
 }
