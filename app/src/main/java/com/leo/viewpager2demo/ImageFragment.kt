@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.LogUtils
 import com.bumptech.glide.Glide
 import com.leo.viewpager2demo.databinding.FragmentImageBinding
@@ -14,16 +13,27 @@ import com.leo.viewpager2demo.databinding.FragmentImageBinding
  * @Author leo
  * @Date 2023/9/1
  */
-class ImageFragment : Fragment() {
+class ImageFragment : Fragment(), SmartFragmentImpl {
     private lateinit var mBinding: FragmentImageBinding
     private lateinit var mSourceBean: SourceBean
+
+
 
     companion object Instance {
         fun newInstance(sourceBean: SourceBean): ImageFragment {
             val fragment = ImageFragment()
             fragment.mSourceBean = sourceBean
+//            ImageFragment::javaClass
             return fragment
         }
+    }
+
+
+
+    override fun newInstance(bean: SmartFragmentTypeExEntity): Fragment {
+        val fragment = ImageFragment()
+        fragment.mSourceBean = bean as SourceBean
+        return fragment
     }
 
 
@@ -38,18 +48,20 @@ class ImageFragment : Fragment() {
 
     }
 
-    private fun initView(){
+    private fun initView() {
 //        mBinding.image.setImageResource(mSourceBean.image)
 //        Glide.with(this).load("https://bcloud.aitici.com/ticidashi/33e97cd94159bad9e97fd180e2ba61aa571011693305952360.jpg").into(mBinding.image)
         Glide.with(this).load(mSourceBean.image).into(mBinding.image)
-        LogUtils.dTag("我看看这个东西就应该知道了","onHiddenChanged----",mSourceBean.id)
+        LogUtils.dTag("我看看这个东西就应该知道了", "onHiddenChanged----", mSourceBean.id)
     }
 
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        LogUtils.dTag("我看看这个东西就应该知道了","onHiddenChanged",mSourceBean.id)
+        LogUtils.dTag("我看看这个东西就应该知道了", "onHiddenChanged", mSourceBean.id)
     }
+
+
 
 
 }
