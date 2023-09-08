@@ -35,5 +35,6 @@ class TextFragment: Fragment(), SmartFragmentImpl {
 
     private fun initView() {
         mBinding.txt.text = mSourceBean.text
+        mBinding.txtIndex.text = "${mSourceBean.id}"
     }
 }

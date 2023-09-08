@@ -10,15 +10,31 @@
         android:id="@+id/txt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txt_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ff0000"
         android:textSize="40dp"
-        android:ems="1"
         tools:text="测试"
         android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_index"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:textColor="#ff0000"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1"
+        app:bl_corners_radius="100dp"
+        app:bl_solid_color="#80000000"
+        android:gravity="center"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

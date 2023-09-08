@@ -50,4 +50,5 @@ dependencies {
 //    implementation("androidx.viewpager2:viewpager2:1.1.0-beta01")
     implementation("com.github.bumptech.glide:glide:4.13.2")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.2")
+    implementation("com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.6")
 }

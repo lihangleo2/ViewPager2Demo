@@ -63,7 +63,17 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
     fun setOnRefreshLoadMoreListener(listener: OnRefreshLoadMoreListener): SmartViewPager2Adapter {
         this.mRefreshListener = listener
         this.mLoadMoreListener = listener
+        checkIndexAndCallBack(mViewPager2.currentItem)
         return this
+    }
+
+    private fun checkIndexAndCallBack(position:Int){
+        if (mLoadMoreListener != null) {
+            registLoadMoreOrNot(position)
+        }
+        if (mRefreshListener != null) {
+            registRefreshOrNot(position)
+        }
     }
 
 
@@ -144,12 +154,7 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                if (mLoadMoreListener != null) {
-                    registLoadMoreOrNot(position)
-                }
-                if (mRefreshListener != null) {
-                    registRefreshOrNot(position)
-                }
+                checkIndexAndCallBack(position)
             }
         })
 

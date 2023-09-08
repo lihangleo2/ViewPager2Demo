@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.leo.viewpager2demo.R
 import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.FragmentImageBinding
 import com.smart.adapter.interf.SmartFragmentImpl
@@ -36,10 +37,9 @@ class ImageFragment : Fragment(), SmartFragmentImpl {
 
     private fun initView() {
         Glide.with(this).load(mSourceBean.image).into(mBinding.image)
+        mBinding.txtIndex.text = "${mSourceBean.id}"
+
     }
-
-
-
 
 
 }
