@@ -1,8 +1,7 @@
 package com.leo.viewpager2demo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.viewpager2.widget.ViewPager2
+import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.LogUtils
 import com.leo.viewpager2demo.DataUtil.productDatas
 import com.leo.viewpager2demo.databinding.ActivityMainBinding
@@ -19,6 +18,9 @@ class MainActivity : AppCompatActivity() {
                     LogUtils.dTag("数据预加载接口回调","加载更多----")
                 }
             })
+            .addFragment(1, ImageFragment::class.java)
+            .addFragment(2,TextFragment::class.java)
+            //可以在这里初始化数据
             .addData(productDatas(1))
     }
 
@@ -42,7 +44,11 @@ class MainActivity : AppCompatActivity() {
 
         //模拟向下加载数据
         mBinding.buttonBack.setOnClickListener {
-            mAdapter.addData(productDatas(mAdapter.getDataList().size+1))
+            var list = productDatas(mAdapter.getDataList().size+1)
+            list.add(0,SourceBean(99, "一段文字", -1, 2))
+            list.add(0,SourceBean(99, "浅挚绊离兮", -1, 2))
+            list.add(0,SourceBean(99, "微凉徒眸意", -1, 2))
+            mAdapter.addData(list)
         }
     }
 

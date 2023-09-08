@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.blankj.utilcode.util.LogUtils
 import com.bumptech.glide.Glide
 import com.leo.viewpager2demo.databinding.FragmentImageBinding
+import com.leo.viewpager2demo.databinding.FragmentTextBinding
 
 /**
  * @Author leo
- * @Date 2023/9/1
+ * @Date 2023/9/8
  */
-class ImageFragment : Fragment(), SmartFragmentImpl {
-    private lateinit var mBinding: FragmentImageBinding
+class TextFragment: Fragment(), SmartFragmentImpl {
+    private lateinit var mBinding: FragmentTextBinding
     private lateinit var mSourceBean: SourceBean
 
     override fun initSmartFragmentData(bean: SmartFragmentTypeExEntity) {
@@ -22,7 +22,7 @@ class ImageFragment : Fragment(), SmartFragmentImpl {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = FragmentImageBinding.inflate(inflater, container, false);
+        mBinding = FragmentTextBinding.inflate(inflater, container, false);
         initView()
         return mBinding.root
     }
@@ -33,11 +33,6 @@ class ImageFragment : Fragment(), SmartFragmentImpl {
     }
 
     private fun initView() {
-        Glide.with(this).load(mSourceBean.image).into(mBinding.image)
+        mBinding.txt.text = mSourceBean.text
     }
-
-
-
-
-
 }

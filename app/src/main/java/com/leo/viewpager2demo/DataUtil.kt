@@ -19,8 +19,8 @@ object DataUtil {
 
     //模拟生成加载数据
     @JvmStatic
-    fun productDatas(index:Int): MutableList<SourceBean> {
-        var newDats = mutableListOf<SourceBean>()
+    fun productDatas(index:Int): MutableList<SmartFragmentTypeExEntity> {
+        var newDats = mutableListOf<SmartFragmentTypeExEntity>()
         LogUtils.dTag("我看看到底是多少",index,index+9)
         for (i in index..index + 9) {
             var realPos = i % sourceImagRes.size
