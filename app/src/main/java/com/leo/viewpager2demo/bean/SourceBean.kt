@@ -1,4 +1,6 @@
-package com.leo.viewpager2demo
+package com.leo.viewpager2demo.bean
+
+import com.smart.adapter.interf.SmartFragmentTypeExEntity
 
 /**
  * @Author leo
@@ -10,7 +12,7 @@ data class SourceBean(
     var image:Int,
     var type:Int,
     var createTime:Long = System.currentTimeMillis()
-):SmartFragmentTypeExEntity {
+): SmartFragmentTypeExEntity {
     override fun getFragmentType(): Int {
         return type
     }

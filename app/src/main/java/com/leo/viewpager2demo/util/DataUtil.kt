@@ -1,6 +1,9 @@
-package com.leo.viewpager2demo
+package com.leo.viewpager2demo.util
 
 import com.blankj.utilcode.util.LogUtils
+import com.leo.viewpager2demo.R
+import com.leo.viewpager2demo.bean.SourceBean
+import com.smart.adapter.interf.SmartFragmentTypeExEntity
 
 /**
  * @类名

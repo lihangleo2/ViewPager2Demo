@@ -3,8 +3,13 @@ package com.leo.viewpager2demo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.LogUtils
-import com.leo.viewpager2demo.DataUtil.productDatas
+import com.leo.viewpager2demo.bean.SourceBean
+import com.leo.viewpager2demo.util.DataUtil.productDatas
 import com.leo.viewpager2demo.databinding.ActivityMainBinding
+import com.leo.viewpager2demo.fragment.ImageFragment
+import com.leo.viewpager2demo.fragment.TextFragment
+import com.smart.adapter.SmartViewPager2Adapter
+import com.smart.adapter.interf.OnLoadMoreListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +24,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
             .addFragment(1, ImageFragment::class.java)
-            .addFragment(2,TextFragment::class.java)
+            .addFragment(2, TextFragment::class.java)
             //可以在这里初始化数据
             .addData(productDatas(1))
     }
@@ -45,9 +50,9 @@ class MainActivity : AppCompatActivity() {
         //模拟向下加载数据
         mBinding.buttonBack.setOnClickListener {
             var list = productDatas(mAdapter.getDataList().size+1)
-            list.add(0,SourceBean(99, "一段文字", -1, 2))
-            list.add(0,SourceBean(99, "浅挚绊离兮", -1, 2))
-            list.add(0,SourceBean(99, "微凉徒眸意", -1, 2))
+            list.add(0, SourceBean(99, "一段文字", -1, 2))
+            list.add(0, SourceBean(99, "浅挚绊离兮", -1, 2))
+            list.add(0, SourceBean(99, "微凉徒眸意", -1, 2))
             mAdapter.addData(list)
         }
     }

@@ -17,4 +17,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ViewPager2Demo"
 include(":app")
- 
+include(":smartVpageAdapterlibrary")

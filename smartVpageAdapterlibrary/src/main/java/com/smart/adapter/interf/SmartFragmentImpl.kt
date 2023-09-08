@@ -1,4 +1,4 @@
-package com.leo.viewpager2demo
+package com.smart.adapter.interf
 
 /**
  * @Author leo

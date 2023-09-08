@@ -1,4 +1,4 @@
-package com.leo.viewpager2demo
+package com.smart.adapter.util
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

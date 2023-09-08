@@ -1,12 +1,16 @@
 package com.leo.viewpager2demo;
 
-import static com.leo.viewpager2demo.DataUtil.productDatas;
+import static com.leo.viewpager2demo.util.DataUtil.productDatas;
 
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.leo.viewpager2demo.fragment.ImageFragment;
+import com.smart.adapter.SmartViewPager2Adapter;
+import com.smart.adapter.interf.OnLoadMoreListener;
 
 /**
  * @Author leo
@@ -27,7 +31,7 @@ public class JavaUseActivity extends FragmentActivity {
                     public void onLoadMore(@NonNull SmartViewPager2Adapter smartAdapter) {
 
                     }
-                }).addFragment(1,ImageFragment.class)
+                }).addFragment(1, ImageFragment.class)
                 .addData(productDatas(1));
 
         ImageFragment imageFragment = new ImageFragment();

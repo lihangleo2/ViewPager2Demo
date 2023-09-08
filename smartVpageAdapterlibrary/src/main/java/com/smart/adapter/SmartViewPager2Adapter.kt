@@ -1,4 +1,4 @@
-package com.leo.viewpager2demo
+package com.smart.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -7,6 +7,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.smart.adapter.interf.OnLoadMoreListener
+import com.smart.adapter.interf.OnRefreshListener
+import com.smart.adapter.interf.OnRefreshLoadMoreListener
+import com.smart.adapter.interf.SmartFragmentImpl
+import com.smart.adapter.interf.SmartFragmentTypeExEntity
+import com.smart.adapter.util.ViewPager2Util
 
 
 /**
