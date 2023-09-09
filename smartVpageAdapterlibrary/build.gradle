@@ -31,7 +31,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
+//    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }
 
@@ -40,7 +40,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-//                from components.release
+                from components.release
                 groupId = 'com.smart.adapter' //groupId 随便取
                 artifactId = 'SmartAdapter'  //artifactId 随便取
                 version = '1.0.0'
