@@ -42,7 +42,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("com.google.android.material:material:1.5.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation(project(mapOf("path" to ":smartVpageAdapterlibrary")))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -52,4 +51,5 @@ dependencies {
     implementation("com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.6")
     implementation("com.geyifeng.immersionbar:immersionbar:3.2.2")
     implementation("com.geyifeng.immersionbar:immersionbar-ktx:3.2.2")
+    implementation("com.github.lihangleo2:SmartViewPager2Adapter:1.0.1")
 }
