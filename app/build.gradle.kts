@@ -17,9 +17,21 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    //签名 (需要签名文件)
+    signingConfigs {
+
+        create("testKey") {
+            storeFile = file("atman.jks")
+            storePassword = "5888062"
+            keyAlias = "fastMedical"
+            keyPassword = "5888062"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("testKey")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -34,6 +46,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
