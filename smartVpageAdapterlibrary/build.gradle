@@ -1,12 +1,12 @@
 plugins {
-    id 'maven-publish'
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
     namespace 'com.smart.adapter'
-    compileSdk 33
+    compileSdk 31
 
     defaultConfig {
         minSdk 21
@@ -30,12 +30,11 @@ android {
 }
 
 dependencies {
-
-//    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }
 
-//解决发布版本bug:参考连接 https://blog.csdn.net/qq_41885673/article/details/121588094
+////解决发布版本bug:参考连接 https://blog.csdn.net/qq_41885673/article/details/121588094
 afterEvaluate {
     publishing {
         publications {
@@ -47,6 +46,5 @@ afterEvaluate {
             }
         }
     }
-
 }
 

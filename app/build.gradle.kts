@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.leo.viewpager2demo"
-    compileSdk = 33
+    compileSdk = 31
 
     defaultConfig {
         applicationId = "com.leo.viewpager2demo"
         minSdk = 29
-        targetSdk = 33
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0.0"
 
