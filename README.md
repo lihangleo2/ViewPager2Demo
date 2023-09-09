@@ -1,33 +1,22 @@
-# 万能阴影布局-ShadowLayout
-[![](https://jitpack.io/v/lihangleo2/ShadowLayout.svg)](https://jitpack.io/#lihangleo2/ShadowLayout)
+# 万能ViewPager2适配器--SmartViewPager2Adapter
+[![](https://jitpack.io/v/lihangleo2/SmartViewPager2Adapter.svg)](https://jitpack.io/#lihangleo2/SmartViewPager2Adapter)
 
 ## 特点功能
-任何view被包裹后即可享受阴影，以及系统shape,selector功能（清空项目drawable文件夹）。具体介绍如下：
+完全脱离xml，所有效果只需要通过api调用
 ```
-支持定制化阴影：
-    1. 随意修改阴影颜色值
-    2. 阴影圆角：可统一设置圆角，也可对某几个角单独设置
-    3. 阴影x,y偏移量
-    4. 随意修改阴影扩散程度,即阴影大小
+具体功能：
+    1. 几句代码实现抖音列表效果，可以做到从头部，或者底部，丝滑插入数据
+    2. 可以设置刷新加载监听，再达到预加载limit的时候触发监听
+    3. 实现数据源接口SmartFragmentTypeExEntity和fragment数据填充接口SmartFragmentImpl，你会体验到什么是丝滑
+    4. 画廊的实现，不需要在xml做任何操作，调用即可实现。系统方式2边间隙滑动不了，SmartViewPager2Adapter彻底解决这个问题
     5. 隐藏阴影：隐藏某边或多边阴影，或完全隐藏
-    6. 可随意代码动态修改阴影
-    
-不止于阴影；系统shape功能：项目中shape、selector、ripple统统拥有。解放你的双手，清空项目drawable文件夹
-    1. shape样式：pressed（按钮点击）、selected（按钮选择）、ripple（点击水波纹）
-    2. 背景色设置
-    3. stroke边框设置
-    4. 渐变色背景色设置
-    5. 按钮是否可被点击及不可点击背景
-    6. 可绑定textView后，可伴随文案变化，可伴随文案颜色变化
-    7. 支持设置图片背景，支持图片selector
-    8. 可以剪裁子view，比如用到播放器之类的地方，想要各种不同的圆角时，ShadowLayout可以轻松解决
-    
+    6. 极限脱离xml控制，以简化使用者使用
+  
 ```
 
 
-## ShadowLayout动态
-* [ShadowLayout3.3.3更新内容，及以往成长](https://github.com/lihangleo2/ShadowLayout/wiki)
-* 注意：3.0后修改大量api及规范命名，如果还在用2.0，不方便转移的可查看[ShadowLayout2.0文档](https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/README218.md)
+## SmartViewPager2Adapter动态
+* [SmartViewPager2Adapter1.0.1更新内容](https://github.com/lihangleo2/ViewPager2Demo/wiki)
 
 
 ## Demo
