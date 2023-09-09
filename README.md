@@ -27,35 +27,18 @@
 
 ## 效果展示
 为录制流畅，截图分辨率模糊。可下载apk查看真机效果
-* ### 1.0功能展示
-|基础功能展示|各属性展示|随意更改颜色|
+* ### 基础功能展示
+|几句代码实现抖音列表|向上或向下加载数据|设置加载监听|
 |:---:|:---:|:---:|
-|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/main.jpg" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/first_show.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/other_show.gif" alt="Sample"  width="100%">
+|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/base.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loadfront.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/listener.gif" alt="Sample"  width="100%">
 <br/>
 
-* ### 2.0功能更新
-|2.1.6新增shape,selector功能|2.1.7isSym属性对比|2.1.8单独更改某圆角大小|
-|:---:|:---:|:---:|
-|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/shape_gif.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/isSym_half.jpg" alt="Sample"  width="481">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/corners.gif" alt="Sample"  width="100%">
-<br/>
-
-* ### 3.0.1版本来袭
-|stroke边框及点击|shape及图片selector|组合使用|
-|:---:|:---:|:---:|
-|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/stroke2.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/shapeSelector2.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/groupUse2.gif" alt="Sample"  width="100%">
-<br/>
-
-* ### 3.1.0新增ripple及渐变色及3.1.1绑定textView
-|3.1.0渐变色及ripple|3.1.1绑定textView|
+* ### 画廊功能展示
+|asGallery一句代码搞定|3d画廊|
 |:---:|:---:|
-|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/ripple.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/bindTextView.gif" alt="Sample">
+|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery3d.gif" alt="Sample">
 <br/>
 
-* ### 3.3.1功能更新
-|增加虚线边框|单边虚线|边框和ripple共存|
-|:---:|:---:|:---:|
-|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/show_3.3.1_1.jpg" alt="Sample" width="100%">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/show_3.3.1_2.jpg" alt="Sample" width="100%">|<img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/show_3.3.1_3.jpg" alt="Sample" width="100%">
-<br/>
 
 
 ## 添加依赖
@@ -71,23 +54,9 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:ShadowLayout:3.3.3'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:1.0.1'
    }
   ```
-<br/>
-
-## 热门问题
-
-- 在AndroidX里如何使用？根目录下找到gradle的配置文件gradle.properties里加上以下2句代码：
-    ```java
-   android.useAndroidX=true
-   android.enableJetifier=true
-   ```
-
-- [glide版本冲突终极解决方案](https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/GLIDE.md)
-
-- [3.2.4依赖问题解决](https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/problem.md)
-
 <br/>
 
 ## 基本使用
