@@ -79,7 +79,7 @@
 ```
 <br>
 
-#### 1.2、步骤二：设置给viewpager2（做完一下就搞定了）
+#### 1.2、步骤二：设置给viewpager2（做完这下就搞定了，你没看错）
 文章最后会有著多方法详，这里不多叙述
 ```
 mBinding.viewPager2.adapter = mAdapter
