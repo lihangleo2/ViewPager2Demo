@@ -202,7 +202,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 
 ## 赞赏
 
-如果你喜欢 ShadowLayout 的功能，感觉 ShadowLayout 帮助到了你，可以点右上角 "Star" 支持一下 谢谢！ ^_^
+如果你喜欢 SmartViewPager2Adapter 的功能，感觉 SmartViewPager2Adapter 帮助到了你，可以点右上角 "Star" 支持一下 谢谢！ ^_^
 你也还可以扫描下面的二维码~ 请作者喝一杯咖啡。或者遇到工作中比较难实现的需求请作者帮忙。
 
 ![](https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/pay_ali.png) ![](https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/pay_wx.png)
