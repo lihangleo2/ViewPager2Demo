@@ -132,6 +132,8 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 ### 三、方法详解
 这里我会把重要的方法拿出来将，其他的会出个表格
 
+#### 3.1 数据加载
+
 * 向下无感加载数据
   ```
   .addData(List<SmartFragmentTypeExEntity> list)
@@ -146,6 +148,9 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   ```
   .addFragment(type, Fragment.class)
   ```
+<br>
+
+#### 3.2 设置监听
 
 * 设置头部加载监听（不设置则不触发）
   ```
@@ -161,16 +166,21 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   ```
   .setOnRefreshLoadMoreListener(OnRefreshLoadMoreListener listener)
   ```
+<br>
 
-  * 头部已经不能翻页时，调用。将不再触发头部监听。
+#### 3.2 结束监听
+
+* 头部已经不能翻页时，调用。将不再触发头部监听。
   ```
   .finishRefreshWithNoMoreData()
   ```
 
-  * 底部已经不能翻页时，调用。将不再触发底部监听。
+* 底部已经不能翻页时，调用。将不再触发底部监听。
   ```
   .finishLoadMoreWithNoMoreData()
   ```
+  
+  
 
 其他方法
 |name|format|description|
@@ -209,20 +219,3 @@ Android工作多年了，一直向往大厂。在前进的道路上是孤独的�
   <br/>
 
 
-## Licenses
-
-```
-MIT License
-
-Copyright (c) 2019 leo
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
