@@ -27,6 +27,7 @@ class GalleryUseActivity : AppCompatActivity() {
     private val mAdapter by lazy {
         SmartViewPager2Adapter(this, mBinding.viewPager2)
             .cancleOverScrollMode()
+            .asGallery(ConvertUtils.dp2px(50f),ConvertUtils.dp2px(50f))
             .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
             .setOffscreenPageLimit(6)
             .setPreLoadLimit(3)
