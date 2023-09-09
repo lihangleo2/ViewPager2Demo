@@ -64,5 +64,5 @@ dependencies {
     implementation("com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.6")
     implementation("com.geyifeng.immersionbar:immersionbar:3.2.2")
     implementation("com.geyifeng.immersionbar:immersionbar-ktx:3.2.2")
-    implementation("com.github.lihangleo2:SmartViewPager2Adapter:1.0.1")
+    implementation("com.github.lihangleo2:SmartViewPager2Adapter:1.0.2")
 }
