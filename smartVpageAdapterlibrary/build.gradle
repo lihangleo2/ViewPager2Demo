@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
@@ -33,4 +34,18 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+}
+
+//解决发布版本bug:参考连接 https://blog.csdn.net/qq_41885673/article/details/121588094
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+//                from components.release
+                groupId = 'com.smart.adapter' //groupId 随便取
+                artifactId = 'SmartAdapter'  //artifactId 随便取
+                version = '1.0.0'
+            }
+        }
+    }
 }
