@@ -60,330 +60,128 @@
 <br/>
 
 ## 基本使用
-* #### 一、阴影的简单使用
-```xml
-            <com.lihang.ShadowLayout
-                android:id="@+id/mShadowLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                app:hl_cornerRadius="10dp"
-                app:hl_shadowColor="#2a000000"
-                app:hl_shadowLimit="5dp"
-                >
+### 一、继续代码实现抖音效果
+使用此库，你只需在xml加上简单的viewPager2即可，其他只需调用方法即可
+#### 1.1、步骤一：初始化adapter
+```java
+    
+    private val mAdapter by lazy {
+        SmartViewPager2Adapter(this, mBinding.viewPager2)
+            .cancleOverScrollMode()
+            .setOffscreenPageLimit(5)
+            .setPreLoadLimit(3)
+            .addFragment(1, ImageFragment::class.java)
+            .addFragment(2, TextFragment::class.java)
+            //可以在这里初始化数据
+            .addData(list)
+    }
 
-                <TextView
-                    android:id="@+id/txt_test"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="圆角"
-                    android:textColor="#000" />
-            </com.lihang.ShadowLayout>
 ```
-<br/>
+<br>
 
-* #### 二、stroke边框的简单使用
-```xml
-            <com.lihang.ShadowLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                app:hl_cornerRadius="10dp"
-                app:hl_strokeColor="#000">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="圆角边框"
-                    android:textColor="#000" />
-            </com.lihang.ShadowLayout>
+#### 1.2、步骤二：设置给viewpager2（做完一下就搞定了）
+文章最后会有著多方法详，这里不多叙述
 ```
-<br/>
-
-* #### 三、shape selector的简单使用
-```xml
-            <com.lihang.ShadowLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                app:hl_cornerRadius="30dp"
-                app:hl_cornerRadius_leftTop="0dp"
-                app:hl_layoutBackground="#F76C6C"
-                app:hl_layoutBackground_true="#89F76C6C"
-                app:hl_shapeMode="pressed">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="selector的pressed用法，请点击"
-                    android:textColor="#fff" />
-            </com.lihang.ShadowLayout>
+mBinding.viewPager2.adapter = mAdapter
 ```
-<br/>
+<br>
 
-* #### 四、图片 selector的简单使用
-```xml
-    <com.lihang.ShadowLayout
-        android:id="@+id/ShadowLayout_shape"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        app:hl_cornerRadius="18dp"
-        app:hl_cornerRadius_rightTop="0dp"
-        app:hl_layoutBackground="@mipmap/test_background_false"
-        app:hl_layoutBackground_true="@mipmap/test_background_true">
+#### 1.3、步骤三：list数据源（注意点）；bean对象要实现接口：SmartFragmentTypeExEntity
+解析数据bean要实现SmartFragmentTypeExEntity接口，返回你在adapter里要生成的fragment的type。(也就是说type==1时生成图片fragment，这些逻辑adapter帮你操作了)
+```java
+public class SourceBean implements SmartFragmentTypeExEntity {
+    int type;
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="图片selector"
-            android:textColor="#fff" />
-
-    </com.lihang.ShadowLayout>
+    @Override
+    public int getFragmentType() {
+        return type;
+    }
+}
 ```
-如果你觉得麻烦，你还可以这样
-```xml
-            <com.lihang.ShadowLayout
-                android:id="@+id/ShadowLayout_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                app:hl_layoutBackground="@mipmap/game_6_right"
-                app:hl_layoutBackground_true="@mipmap/game_6_wrong"
-                app:hl_shapeMode="pressed" />
+<br>
+
+#### 1.4、步骤四：fragment（注意点）
+* 可以看到方法.addFragment(type, Fragment.class)，这里结合步骤三就很清楚了。
+* 比如上面的基础使用里调用了.addFragment(1, ImageFragment::class.java)。最后又调用了.addData(list)，这样adapter会自动帮你找到对应的tyep，然后生成你要的页面。
+
+注意你的fragment必须实现SmartFragmentImpl接口，这个接口是让adapter把数据回传给你，以便你做页面操作
+```java
+public class ImageFragment extends Fragment implements SmartFragmentImpl {
+    //....伪代码
+    @Override
+    public void initSmartFragmentData(SmartFragmentTypeExEntity bean) {
+        this.mSourceBean = bean as SourceBean
+    }
+}
 ```
+
 <br/>
 
 
-* #### 五、渐变色的简单使用
-```xml
-            <com.lihang.ShadowLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:hl_cornerRadius="18dp"
-                app:hl_startColor="#ff0000"
-                app:hl_endColor="#0000ff"
-                >
-
-                <TextView
-                    android:layout_width="160dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="渐变色"
-                    android:textColor="#fff" />
-
-            </com.lihang.ShadowLayout>
+### 二、画廊效果
+画廊只需要加上如下代码，无需在xml里写clipChildren="false"这些代码，解放xml
 ```
-<br/>
+//如果是横向就是左右，竖直的话就是上下。adapter会自己判断
+.asGallery(int leftMargin,int rightMargin)
 
-
-* #### 六、水波纹ripple的使用
-```xml
-            <com.lihang.ShadowLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:hl_cornerRadius="18dp"
-                app:hl_shadowColor="#2a000000"
-                app:hl_shadowLimit="7dp"
-                app:hl_layoutBackground="#fff"
-                app:hl_layoutBackground_true="#ff0000"
-                app:hl_shapeMode="ripple"
-                >
-
-                <TextView
-                    android:layout_width="160dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="水波纹"
-                    />
-
-            </com.lihang.ShadowLayout>
+//想要加上滑动效果只需要加上（后续会加上更多效果）
+setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 ```
-<br/>
+<br>
 
+### 三、方法详解
+这里我会把重要的方法拿出来将，其他的会出个表格
 
-* #### 七、绑定textView，伴随文案及颜色变化
-```xml
-		<com.lihang.ShadowLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    app:hl_bindTextView="@+id/txt_press"
-                    app:hl_cornerRadius="18dp"
-                    app:hl_layoutBackground="#FF9800"
-                    app:hl_layoutBackground_true="#ff0000"
-                    app:hl_shapeMode="pressed"
-                    app:hl_textColor_true="#fff"
-                    app:hl_text="点我，press样式"
-                    app:hl_text_true="我改变了文案了"
-                    >
+* 向下无感加载数据
+  ```
+  .addData(List<SmartFragmentTypeExEntity> list)
+  ```
 
-                    <TextView
-                        android:id="@+id/txt_press"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="点我，press样式"
-                        android:textColor="#000" />
+* 向上无感加载数据
+  ```
+  .addFrontData(List<SmartFragmentTypeExEntity> list)
+  ```
 
-                </com.lihang.ShadowLayout>
-```
-<br/>
+* 加载对应type的fragment.class
+  ```
+  .addFragment(type, Fragment.class)
+  ```
 
+* 设置头部加载监听（不设置则不触发）
+  ```
+  .setOnRefreshListener(OnRefreshListener listener)
+  ```
 
-* #### 八、单条虚线、hl_shapeMode:dashLine的使用（以长边为宽度，短边为虚线width。由此可知，如下例子：为横向虚线）
-```xml
-                <com.lihang.ShadowLayout
-                    android:id="@+id/ShadowLayout_line"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    app:hl_strokeColor="#ff0000"
-                    app:hl_shapeMode="dashLine"
-                    app:hl_stroke_dashWidth="5dp"
-                    app:hl_stroke_dashGap="5dp"
-                    />
-```
-<br/>
+* 设置底部加载监听（不设置则不触发）
+  ```
+  .setLoadMoreListener(OnLoadMoreListener listener)
+  ```
 
+* 同时设置头部和底部监听（不设置则不触发）
+  ```
+  .setOnRefreshLoadMoreListener(OnRefreshLoadMoreListener listener)
+  ```
 
-* #### 九、剪裁各种难以搞定的圆角（如特殊视频圆角剪裁，注意任何view被ShadowLayout包裹都能剪裁）
-```
-如下代码，剪裁视频播放器(注明2点)
-- app:hl_layoutBackground="@color/transparent" 取消shadowLayout默认背景白色改透明
-- app:clickable="false" 取消shadowLayout的点击焦点（用于解决recyclerView里的点击冲突）
-```
+  * 头部已经不能翻页时，调用。将不再触发头部监听。
+  ```
+  .finishRefreshWithNoMoreData()
+  ```
 
-```xml
-    <com.lihang.ShadowLayout
-        android:id="@+id/shadowlayout_Container"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_259"
-        app:hl_cornerRadius_leftTop="@dimen/dp_12"
-        app:hl_cornerRadius_rightTop="@dimen/dp_12"
-        app:hl_layoutBackground="@color/transparent"
-        app:clickable="false"
-        >
-        <com.iccapp.module.common.widget.video.VideoView
-            android:id="@+id/video_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-    </com.lihang.ShadowLayout>
-```
-<br/>
+  * 底部已经不能翻页时，调用。将不再触发底部监听。
+  ```
+  .finishLoadMoreWithNoMoreData()
+  ```
 
-
-## 属性表格（Attributes）
-### 一、关于阴影
-
+其他方法
 |name|format|description|
 |:---:|:---:|:---:|
-|hl_shadowHidden|boolean|是否隐藏阴影（默认false）|
-|hl_shadowColor|color|阴影颜色值,如不带透明，默认透明16%|
-|hl_shadowLimit|dimension|阴影扩散程度（dp）|
-|hl_shadowOffsetX|dimension|x轴的偏移量（dp）|
-|hl_shadowOffsetY|dimension|y轴的偏移量（dp）|
-|hl_shadowHiddenLeft|boolean|左边的阴影不可见，其他3边同理|
-|hl_shadowSymmetry|boolean|控件区域是否对称（默认true）根据此图理解<br><img src="https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/isSym_half.jpg" alt="Sample"  width="350">|
-<br/>
-
-
-### 二、关于圆角
-|name|format|description|
-|:---:|:---:|:---:|
-|hl_cornerRadius|dimension|包括阴影圆角、shape圆角（dp）|
-|hl_cornerRadius_leftTop|dimension|左上圆角，其他角还是hl_cornerRadius值；同理其他3角（dp）|
- <br/>
-
-
-### 三、关于shape
-* #### 3.1、关于shape样式及背景色
-|name|format|description|
-|:---:|:---:|:---:|
-|hl_shapeMode|enum|有4种模式：pressed和selected。和系统shape一样，以及ripple点击水波纹。新增dashLine|
-|hl_layoutBackground|reference/color|背景色，为false时展示：可以是颜色值，图片以及系统shape样式|
-|hl_layoutBackground_true|reference/color|背景色，为true时展示：可以是颜色值，图片以及系统shape样式|
- <br/>
-
-
-* #### 3.2、关于stroke边框
-|name|format|description|
-|:---:|:---:|:---:|
-|hl_strokeWith|dimension|stroke边框线宽度|
-|hl_strokeColor|color|边框颜色值，为false展示|
-|hl_strokeColor_true|color|边框颜色值，为true展示|
-|hl_stroke_dashWidth|dimension|虚线边框的实线部分长度|
-|hl_stroke_dashGap|dimension|虚线边框的间隔宽度|
-<br/>
-
-
-* #### 3.3、关于渐变色
-|name|format|description|
-|:---:|:---:|:---:|
-|hl_startColor|color|渐变起始颜色（设置渐变色后，hl_layoutBackground属性将无效）|
-|hl_centerColor|color|渐变中间颜色（可不填）|
-|hl_endColor|color|渐变的终止颜色|
-|hl_angle|integer|渐变角度（默认0）|
-<br/>
-
-
-* #### 3.4、关于绑定textView
-|name|format|description|
-|:---:|:---:|:---:|
-|hl_bindTextView|reference|当前要绑定的textView的id|
-|hl_textColor|color|shape为false是展示的文案颜色|
-|hl_textColor_true|color|shape为true是展示的文案颜色|
-|hl_text|string|shape为false时展示的文案|
-|hl_text_true|string|shape为true时展示的文案|
-<br/>
-
-
-
-### 四、关于clickable
-|name|format|description|
-|:---:|:---:|:---:|
-|clickable|boolean|设置ShadowLayout是否可以被点击；代码设置：mShadowLayout.setClickable(false);（默认true）|
-|hl_layoutBackground_clickFalse|reference/color|Clickable为false时，要展示的图片或颜色。（此属性应当在app:hl_shapeMode="pressed"时生效）|
- <br/>
-
-
-## 方法表格（Method）
-|name|format|description|
-|:---:|:---:|:---:|
-|setShadowHidden()|boolean|是否隐藏阴影|
-|setShadowColor()|color|设置阴影颜色值|
-|setShadowLimit()|dimension|设置阴影扩散区域|
-|setOffsetX()|dimension|设置阴影的X轴偏移量|
-|setOffsetY()|dimension|设置阴影的Y轴偏移量|
-|setShadowHiddenTop()|boolean|隐藏上边阴影（同理其他三遍）|
-|setCornerRadius()|dimension|设置圆角|
-|setLayoutBackground()|color|设置false时的背景颜色值|
-|setLayoutBackgroundTrue()|color|设置true时的背景颜色值|
-|setStrokeColor()|color|设置false时的边框颜色|
-|setStrokeColorTrue()|color|设置true时的边框颜色|
-|setStrokeWidth()|dimension|设置边框的粗细|
-|setClickable()|boolean|设置ShadowLayout是否可以点击|
-|setSpecialCorner()|integer|设置ShadowLayout四个角的大小|
-|setGradientColor()|integer|设置渐变颜色|
+|.getDataList()|List\<SmartFragmentTypeExEntity\>|返回数据源|
+|.addDefaultFragment()|SmartFragmentImpl|找不到对应type的默认fragment|
+|cancleOverScrollMode()|void|取消viewpager2边缘阴影|
+|setVertical()|boolean|是否设置竖直viewpager2，默认横向|
+|setOffscreenPageLimit()|integer|设置预加载数量|
+|setPreLoadLimit()|integer|设置滑动到limit触发预加载监听|
+|setPagerTransformer()|SmartTransformer|滑动效果SmartTransformer.TRANSFORMER_3D/SmartTransformer.TRANSFORMER_ALPHA_SCALE|
 <br/>
 
 ## 赞赏
@@ -400,9 +198,7 @@
 
 
 ## 其他作品
-[RichEditTextCopyToutiao](https://github.com/lihangleo2/RichEditTextCopyToutiao)  
-[mPro](https://github.com/lihangleo2/mPro)  
-[SmartLoadingView](https://github.com/lihangleo2/SmartLoadingView)
+[万能阴影布局](https://github.com/lihangleo2/ShadowLayout)
 <br/>
 
 
