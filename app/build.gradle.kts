@@ -47,8 +47,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.blankj:utilcodex:1.31.1")
-//    implementation("androidx.viewpager2:viewpager2:1.1.0-beta01")
     implementation("com.github.bumptech.glide:glide:4.13.2")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.2")
     implementation("com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.6")
+    implementation("com.geyifeng.immersionbar:immersionbar:3.2.2")
+    implementation("com.geyifeng.immersionbar:immersionbar-ktx:3.2.2")
 }

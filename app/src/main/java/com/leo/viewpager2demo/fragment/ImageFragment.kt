@@ -26,13 +26,13 @@ class ImageFragment : Fragment(), SmartFragmentImpl {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentImageBinding.inflate(inflater, container, false);
-        initView()
+
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initView()
     }
 
     private fun initView() {

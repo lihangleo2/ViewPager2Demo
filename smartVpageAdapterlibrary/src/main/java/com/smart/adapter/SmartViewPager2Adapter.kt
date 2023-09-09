@@ -1,9 +1,13 @@
 package com.smart.adapter
 
+import androidx.annotation.IntDef
+import androidx.annotation.RestrictTo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
@@ -12,6 +16,10 @@ import com.smart.adapter.interf.OnRefreshListener
 import com.smart.adapter.interf.OnRefreshLoadMoreListener
 import com.smart.adapter.interf.SmartFragmentImpl
 import com.smart.adapter.interf.SmartFragmentTypeExEntity
+import com.smart.adapter.transformer.SmartTransformer
+import com.smart.adapter.transformer.StereoPagerTransformer
+import com.smart.adapter.transformer.StereoPagerVerticalTransformer
+import com.smart.adapter.transformer.TransAlphScaleFormer
 import com.smart.adapter.util.ViewPager2Util
 
 
@@ -25,25 +33,31 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
     private lateinit var mViewPager2: ViewPager2
     private var mRefreshListener: OnRefreshListener? = null
     private var mLoadMoreListener: OnLoadMoreListener? = null
-    private val fragments = mutableMapOf<Int,Class<*>>()
-    private var defaultFragment:Class<*>?=null
+    private val fragments = mutableMapOf<Int, Class<*>>()
+    private var defaultFragment: Class<*>? = null
 
     //预加载litmit,当滑动到只剩余limit个数后，触发加载刷新监听
     //如果，当前个数小于mPreLoadLimit*2+1时，优先触发loadMore监听
     private var mPreLoadLimit: Int = 3
 
 
-    constructor(fragmentActivity: FragmentActivity, bindViewPager2: ViewPager2) : super(fragmentActivity) {
+    constructor(fragmentActivity: FragmentActivity, bindViewPager2: ViewPager2) : super(
+        fragmentActivity
+    ) {
         this.mViewPager2 = bindViewPager2
         initSmartViewPager()
     }
 
     constructor(fragment: Fragment, bindViewPager2: ViewPager2) : super(fragment) {
-        this.mViewPager2=bindViewPager2
+        this.mViewPager2 = bindViewPager2
         initSmartViewPager()
     }
 
-    constructor(fragmentManager: FragmentManager, lifecycle: Lifecycle, bindViewPager2: ViewPager2) : super(fragmentManager, lifecycle) {
+    constructor(
+        fragmentManager: FragmentManager,
+        lifecycle: Lifecycle,
+        bindViewPager2: ViewPager2,
+    ) : super(fragmentManager, lifecycle) {
         //源码都会走这里
         this.mViewPager2 = bindViewPager2
         initSmartViewPager()
@@ -67,7 +81,7 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
         return this
     }
 
-    private fun checkIndexAndCallBack(position:Int){
+    private fun checkIndexAndCallBack(position: Int) {
         if (mLoadMoreListener != null) {
             registLoadMoreOrNot(position)
         }
@@ -79,7 +93,7 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
 
     override fun createFragment(position: Int): Fragment {
         var bean = mDataList[position]
-        if (fragments.isEmpty()){
+        if (fragments.isEmpty()) {
             throw IllegalArgumentException("the fragments can not be empty");
         }
         var targetFragment = fragments[bean.getFragmentType()]
@@ -95,7 +109,7 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
         return mDataList[position].hashCode().toLong()
     }
 
-    fun addData(list: MutableList<SmartFragmentTypeExEntity>) :SmartViewPager2Adapter{
+    fun addData(list: MutableList<SmartFragmentTypeExEntity>): SmartViewPager2Adapter {
         if (list.isNullOrEmpty()) {
             return this
         }
@@ -106,7 +120,7 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
         return this
     }
 
-    fun addData(bean: SmartFragmentTypeExEntity) :SmartViewPager2Adapter{
+    fun addData(bean: SmartFragmentTypeExEntity): SmartViewPager2Adapter {
         if (bean == null) {
             return this
         }
@@ -117,7 +131,7 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
         return this
     }
 
-    fun addFrontData(list: MutableList<SmartFragmentTypeExEntity>) :SmartViewPager2Adapter{
+    fun addFrontData(list: MutableList<SmartFragmentTypeExEntity>): SmartViewPager2Adapter {
         if (list.isNullOrEmpty()) {
             return this
         }
@@ -126,7 +140,7 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
         return this
     }
 
-    fun addFrontData(bean: SmartFragmentTypeExEntity) :SmartViewPager2Adapter {
+    fun addFrontData(bean: SmartFragmentTypeExEntity): SmartViewPager2Adapter {
         if (bean == null) {
             return this
         }
@@ -147,6 +161,14 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
         }
 
         mViewPager2.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int,
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            }
+
             override fun onPageScrollStateChanged(state: Int) {
                 super.onPageScrollStateChanged(state)
                 updateWithIdel(state)
@@ -172,6 +194,15 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
 //                }
 //            }
 //        })
+
+
+//        mViewPager2.getChildAt(0).setOnTouchListener(object :OnTouchListener{
+//            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+//                return false
+//            }
+//        })
+
+
     }
 
 
@@ -197,14 +228,14 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
      * 兜底策略，如果没有对应type的fragment则会用defaultFragment
      * 如果没有设置defaultFragment的话，则会取fragments里第一个添加元素，如果fragments为空则会报错
      * */
-    fun addDefaultFragment(fragment:Class<*>):SmartViewPager2Adapter{
+    fun addDefaultFragment(fragment: Class<*>): SmartViewPager2Adapter {
         defaultFragment = fragment
         return this
     }
 
-    fun addFragment(type:Int,fragment:Class<*>):SmartViewPager2Adapter{
+    fun addFragment(type: Int, fragment: Class<*>): SmartViewPager2Adapter {
         fragments[type] = fragment
-        if (defaultFragment==null){
+        if (defaultFragment == null) {
             defaultFragment = fragments[type]
         }
         return this
@@ -215,6 +246,20 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
         return this
     }
 
+
+    //是否实现画廊
+    fun asGallery(leftMargin:Int,rightMargin:Int):SmartViewPager2Adapter{
+        var recycleView = ViewPager2Util.getRecycleFromViewPager2(mViewPager2)
+        if (mViewPager2.orientation==ViewPager2.ORIENTATION_HORIZONTAL){
+            recycleView?.setPadding(leftMargin, 0, rightMargin, 0);
+        }else{
+            recycleView?.setPadding(0, leftMargin, 0, leftMargin);
+        }
+        recycleView?.clipToPadding = false;
+        return this
+    }
+
+
     fun setOffscreenPageLimit(limit: Int): SmartViewPager2Adapter {
         mViewPager2.offscreenPageLimit = limit
         return this
@@ -222,6 +267,17 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
 
     fun setPreLoadLimit(preLoadLimit: Int): SmartViewPager2Adapter {
         this.mPreLoadLimit = preLoadLimit
+        return this
+    }
+
+    fun setPagerTransformer( smartTransformer: SmartTransformer) :SmartViewPager2Adapter{
+        when(smartTransformer){
+            SmartTransformer.TRANSFORMER_3D->{mViewPager2.setPageTransformer(if (mViewPager2.orientation==ViewPager2.ORIENTATION_HORIZONTAL)
+            {StereoPagerTransformer(mViewPager2.resources.displayMetrics.widthPixels.toFloat())}else{StereoPagerVerticalTransformer(mViewPager2.resources.displayMetrics.heightPixels.toFloat())})}
+            SmartTransformer.TRANSFORMER_ALPHA_SCALE-> mViewPager2.setPageTransformer(TransAlphScaleFormer())
+        }
+
+
         return this
     }
 

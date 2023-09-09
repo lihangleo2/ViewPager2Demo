@@ -30,7 +30,11 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".JavaUseActivity"
+            android:name=".GalleryUseActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Transformer3DActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 

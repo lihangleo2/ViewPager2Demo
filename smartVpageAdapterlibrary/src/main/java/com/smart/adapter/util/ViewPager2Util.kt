@@ -14,7 +14,7 @@ import java.lang.reflect.Field
  */
 object ViewPager2Util {
     @JvmStatic
-    fun cancleViewPagerShadow(viewPager2:ViewPager2) {
+    fun cancleViewPagerShadow(viewPager2:ViewPager2){
         try {
             //取消viewPager2的阴影
             val recyclerViewField: Field =
@@ -23,6 +23,20 @@ object ViewPager2Util {
             val recyclerView = recyclerViewField[viewPager2] as RecyclerView
             recyclerView.overScrollMode = View.OVER_SCROLL_NEVER
         } catch (ignore: Exception) {
+        }
+    }
+
+    @JvmStatic
+    fun getRecycleFromViewPager2(viewPager2:ViewPager2) : RecyclerView? {
+        return try {
+            //取消viewPager2的阴影
+            val recyclerViewField: Field =
+                ViewPager2::class.java.getDeclaredField("mRecyclerView")
+            recyclerViewField.isAccessible = true
+            val recyclerView = recyclerViewField[viewPager2] as RecyclerView
+            recyclerView
+        } catch (ignore: Exception) {
+            null
         }
     }
 }

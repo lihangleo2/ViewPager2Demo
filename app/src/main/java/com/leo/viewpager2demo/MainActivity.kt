@@ -13,8 +13,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        mBinding.btnKotlinUse.setOnClickListener {
+        mBinding.btnBaseUse.setOnClickListener {
             startActivity(Intent(this,KotlinUseActivity::class.java))
+        }
+
+        mBinding.btnGalleryUse.setOnClickListener {
+            startActivity(Intent(this,GalleryUseActivity::class.java))
+        }
+
+        mBinding.btn3dUse.setOnClickListener {
+            startActivity(Intent(this,Transformer3DActivity::class.java))
         }
 
     }

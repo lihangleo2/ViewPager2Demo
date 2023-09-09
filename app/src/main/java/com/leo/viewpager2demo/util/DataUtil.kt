@@ -32,15 +32,20 @@ object DataUtil {
 
 
     //模拟生成加载数据
+    //isGallery 只生成图片数据
     @JvmStatic
-    fun productDatas(index:Int,isLoadMore:Boolean): MutableList<SmartFragmentTypeExEntity> {
+    fun productDatas(index:Int,isLoadMore:Boolean,isGallery:Boolean=false): MutableList<SmartFragmentTypeExEntity> {
         var newDats = mutableListOf<SmartFragmentTypeExEntity>()
 
         if (isLoadMore){
             for (i in index..index + 9) {
                 var randomValue = random.nextInt()
-                var type = if (randomValue%2==0){1}else{2}
 
+                var type = if (randomValue%2==0){1}else{2}
+                if (isGallery){
+                    //画廊数据返回图片
+                    type=1
+                }
                 if (type==1){
                     //图片
                     var realPos = i % ImageRes.size
@@ -83,5 +88,4 @@ object DataUtil {
     fun productBackDatas(mAdapter: SmartViewPager2Adapter): MutableList<SmartFragmentTypeExEntity> {
         return productDatas((mAdapter.getDataList()[mAdapter.getDataList().size-1] as SourceBean).id+1,true)
     }
-
 }
