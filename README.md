@@ -129,7 +129,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 <br>
 
 ### 三、方法详解
-这里我会把重要的方法拿出来将，其他的会出个表格
+这里我会把重要的方法拿出来讲，其他的会出个表格
 
 #### 3.1 数据加载
 
