@@ -15,9 +15,8 @@
 ```
 
 
-## ShadowLayout动态
-* [ShadowLayout3.3.3更新内容，及以往成长](https://github.com/lihangleo2/ShadowLayout/wiki)
-* 注意：3.0后修改大量api及规范命名，如果还在用2.0，不方便转移的可查看[ShadowLayout2.0文档](https://github.com/lihangleo2/ShadowLayout/blob/master/showImages/README218.md)
+## SmartViewPager2Adapter动态
+* [SmartViewPager2Adapter1.0.1更新内容](https://github.com/lihangleo2/ViewPager2Demo/wiki)
 
 
 ## Demo
