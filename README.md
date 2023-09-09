@@ -178,7 +178,14 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   ```
   .finishLoadMoreWithNoMoreData()
   ```
-  
+
+#### 3.3 ViewPager2滑动效果
+
+* SmartTransformer.TRANSFORMER_3D 3d滑动效果
+* SmartTransformer.TRANSFORMER_ALPHA_SCALE 缩放透明度效果
+  ```
+  .setPagerTransformer(SmartTransformer enum)
+  ```
   
 
 其他方法
@@ -190,7 +197,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 |setVertical()|boolean|是否设置竖直viewpager2，默认横向|
 |setOffscreenPageLimit()|integer|设置预加载数量|
 |setPreLoadLimit()|integer|设置滑动到limit触发预加载监听|
-|setPagerTransformer()|SmartTransformer|滑动效果SmartTransformer.TRANSFORMER_3D/SmartTransformer.TRANSFORMER_ALPHA_SCALE|
+
 <br/>
 
 ## 赞赏
