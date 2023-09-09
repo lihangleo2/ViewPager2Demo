@@ -1,7 +1,7 @@
 plugins {
+    id 'maven-publish'
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'maven-publish'
 }
 
 android {
@@ -41,7 +41,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-//                from components.release
+                from components.release
                 groupId = 'com.smart.adapter' //groupId 随便取
                 artifactId = 'SmartAdapter'  //artifactId 随便取
                 version = '1.0.0'
