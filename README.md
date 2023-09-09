@@ -102,7 +102,7 @@ public class SourceBean implements SmartFragmentTypeExEntity {
 
 #### 1.4、步骤四：fragment（注意点）
 * 可以看到方法.addFragment(type, Fragment.class)，这里结合步骤三就很清楚了。
-* 比如上面的基础使用里调用了.addFragment(1, ImageFragment::class.java)。最后又调用了.addData(list)，这样adapter会自动帮你找到对应的tyep，然后生成你要的页面。
+* 比如上面的基础使用里调用了.addFragment(1, ImageFragment::class.java)。最后加载了数据.addData(list)，这样adapter会自动在数据里找到对应的tyep，然后生成你要的fragment。
 
 注意你的fragment必须实现SmartFragmentImpl接口，这个接口是让adapter把数据回传给你，以便你做页面操作
 ```java
