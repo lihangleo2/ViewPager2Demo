@@ -225,7 +225,7 @@ Android工作多年了，如果你在学习的路上也感觉孤独，请和我�
 * QQ群： 209010674 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=5e29576e7d2ebf08fa37d8953a0fea3b5eafdff2c488c1f5c152223c228f1d11"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="android交流群" title="android交流群"></a>（点击图标，可以直接加入）
   <br/>
 
-  # SmartViewPager2Adapter
+
 ## Licenses
 
 ```
