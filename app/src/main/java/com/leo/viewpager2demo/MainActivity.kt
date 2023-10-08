@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,Transformer3DActivity::class.java))
         }
 
+        mBinding.btnLoopUse.setOnClickListener {
+            startActivity(Intent(this,LoopActivity::class.java))
+        }
+
     }
 
 }

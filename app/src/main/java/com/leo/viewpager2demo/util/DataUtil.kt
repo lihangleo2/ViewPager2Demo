@@ -19,8 +19,8 @@ object DataUtil {
 
     private val ImageRes by lazy {
         mutableListOf(R.mipmap.image_17, R.mipmap.image_18, R.mipmap.image_19, R.mipmap.image_20,
-            R.mipmap.image_21, R.mipmap.image_22, R.mipmap.image_23,R.mipmap.image_1,R.mipmap.gif_1, R.mipmap.image_2,R.mipmap.gif_2, R.mipmap.image_3, R.mipmap.image_4, R.mipmap.image_5,R.mipmap.gif_3, R.mipmap.image_6, R.mipmap.image_7, R.mipmap.image_8, R.mipmap.image_9, R.mipmap.image_10,
-            R.mipmap.gif_4,R.mipmap.gif_5,R.mipmap.image_11,R.mipmap.gif_6, R.mipmap.gif_7,R.mipmap.image_12, R.mipmap.image_13, R.mipmap.image_14, R.mipmap.image_15, R.mipmap.image_16)
+            R.mipmap.image_21, R.mipmap.image_22, R.mipmap.image_23, R.mipmap.image_1, R.mipmap.gif_1, R.mipmap.image_2, R.mipmap.gif_2, R.mipmap.image_3, R.mipmap.image_4, R.mipmap.image_5, R.mipmap.gif_3, R.mipmap.image_6, R.mipmap.image_7, R.mipmap.image_8, R.mipmap.image_9, R.mipmap.image_10,
+            R.mipmap.gif_4, R.mipmap.gif_5, R.mipmap.image_11, R.mipmap.gif_6, R.mipmap.gif_7, R.mipmap.image_12, R.mipmap.image_13, R.mipmap.image_14, R.mipmap.image_15, R.mipmap.image_16)
     }
 
     private val TextRes by lazy {
@@ -34,44 +34,52 @@ object DataUtil {
     //模拟生成加载数据
     //isGallery 只生成图片数据
     @JvmStatic
-    fun productDatas(index:Int,isLoadMore:Boolean,isGallery:Boolean=false): MutableList<SmartFragmentTypeExEntity> {
+    fun productDatas(index: Int, isLoadMore: Boolean, isGallery: Boolean = false): MutableList<SmartFragmentTypeExEntity> {
         var newDats = mutableListOf<SmartFragmentTypeExEntity>()
 
-        if (isLoadMore){
+        if (isLoadMore) {
             for (i in index..index + 9) {
                 var randomValue = random.nextInt()
 
-                var type = if (randomValue%2==0){1}else{2}
-                if (isGallery){
-                    //画廊数据返回图片
-                    type=1
+                var type = if (randomValue % 2 == 0) {
+                    1
+                } else {
+                    2
                 }
-                if (type==1){
+                if (isGallery) {
+                    //画廊数据返回图片
+                    type = 1
+                }
+                if (type == 1) {
                     //图片
                     var realPos = i % ImageRes.size
                     newDats.add(SourceBean(i, "", ImageRes[realPos], type))
-                }else{
+                } else {
                     //文字
                     var realPos = i % TextRes.size
                     newDats.add(SourceBean(i, TextRes[realPos], -1, type))
                 }
 
             }
-        }else{
-            for (i in index-9..index) {
+        } else {
+            for (i in index - 9..index) {
                 var randomValue = random.nextInt()
-                var type = if (randomValue%2==0){1}else{2}
+                var type = if (randomValue % 2 == 0) {
+                    1
+                } else {
+                    2
+                }
 
-                if (type==1){
+                if (type == 1) {
                     //图片
                     var realPos = abs(i) % ImageRes.size
                     newDats.add(SourceBean(i, "", ImageRes[realPos], type))
-                }else{
+                } else {
                     //文字
                     var realPos = abs(i) % TextRes.size
                     newDats.add(SourceBean(i, TextRes[realPos], -1, type))
                 }
-                LogUtils.dTag("为什么会这样的东西呢",i, abs(i))
+                LogUtils.dTag("为什么会这样的东西呢", i, abs(i))
             }
         }
 
@@ -81,11 +89,11 @@ object DataUtil {
 
     @JvmStatic
     fun productFrontDatas(mAdapter: SmartViewPager2Adapter): MutableList<SmartFragmentTypeExEntity> {
-        return productDatas((mAdapter.getDataList()[0] as SourceBean).id-1,false)
+        return productDatas((mAdapter.getItem(0) as SourceBean).id - 1, false)
     }
 
     @JvmStatic
     fun productBackDatas(mAdapter: SmartViewPager2Adapter): MutableList<SmartFragmentTypeExEntity> {
-        return productDatas((mAdapter.getDataList()[mAdapter.getDataList().size-1] as SourceBean).id+1,true)
+        return productDatas((mAdapter.getItem(mAdapter.itemCount - 1) as SourceBean).id + 1, true)
     }
 }
