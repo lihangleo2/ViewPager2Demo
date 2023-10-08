@@ -17,7 +17,7 @@
 
 
 ## SmartViewPager2Adapter动态
-* [SmartViewPager2Adapter2.0.0更新动态及以往版本](https://github.com/lihangleo2/ViewPager2Demo/wiki)
+* [SmartViewPager2Adapter2.0.1更新动态及以往版本](https://github.com/lihangleo2/ViewPager2Demo/wiki)
 
 
 ## Demo
@@ -55,7 +55,7 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.0.0'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.0.1'
    }
   ```
 <br/>
