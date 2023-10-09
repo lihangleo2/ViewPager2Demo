@@ -11,13 +11,16 @@
     4. 实现数据源接口，和Fragment接口，你会体验到什么是丝滑
     5. 画廊的实现，不再需要在xml设置clipChildren属性，调用即可实现。
     6. 极限脱离xml控制，以简化使用者使用
+    7. 支持无线循环模式
+    8. 支持自动滚动模式；设置滚动时长，设置循环间隔时长
+    9. 循环滚动可绑定页面lifeCycle生命周期
 
   
 ```
 
 
 ## SmartViewPager2Adapter动态
-* [SmartViewPager2Adapter2.0.1更新动态及以往版本](https://github.com/lihangleo2/ViewPager2Demo/wiki)
+* [SmartViewPager2Adapter2.0.2更新动态及以往版本](https://github.com/lihangleo2/ViewPager2Demo/wiki)
 
 
 ## Demo
@@ -55,7 +58,7 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.0.1'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.0.2'
    }
   ```
 <br/>
