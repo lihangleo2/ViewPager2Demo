@@ -1,4 +1,4 @@
-package com.leo.viewpager2demo
+package com.leo.viewpager2demo.activity
 
 import android.os.Bundle
 import android.view.View
@@ -11,17 +11,17 @@ import com.leo.viewpager2demo.fragment.TextFragment
 import com.leo.viewpager2demo.util.DataUtil
 import com.smart.adapter.SmartViewPager2Adapter
 import com.smart.adapter.interf.OnRefreshLoadMoreListener
-import com.smart.adapter.transformer.SmartTransformer
 
 /**
  * @Author leo2
  * @Date 2023/9/8
  */
-class KotlinUseActivity : AppCompatActivity() {
+class TiktokActivity : AppCompatActivity() {
 
 
     private val mAdapter by lazy {
         SmartViewPager2Adapter(this, mBinding.viewPager2)
+              // 是否取消滑动最边上时出现的阴影
 //            .cancleOverScrollMode()
             .setOffscreenPageLimit(5)
             .setPreLoadLimit(3)

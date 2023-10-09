@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <item
+        android:id="@+id/scroll_time_600"
+        android:orderInCategory="50"
+        android:title="切换滚动时间600ms"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/scroll_time_150"
+        android:orderInCategory="50"
+        android:title="切换滚动时间150ms"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/loop_time_3000"
+        android:orderInCategory="50"
+        android:title="循环间隔时间3000ms"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/loop_time_600"
+        android:orderInCategory="50"
+        android:title="循环间隔时间600ms"
+        app:showAsAction="never"
+        />
+</menu>

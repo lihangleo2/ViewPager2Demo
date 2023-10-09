@@ -15,8 +15,9 @@
         android:theme="@style/Theme.ViewPager2Demo"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".activity.MainActivity"
+            android:exported="true"
+            android:theme="@style/ActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,23 +26,35 @@
         </activity>
 
         <activity
-            android:name=".KotlinUseActivity"
+            android:name=".activity.TiktokActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".GalleryUseActivity"
+            android:name=".activity.GalleryUseActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/ActionBarTheme" />
         <activity
-            android:name=".Transformer3DActivity"
+            android:name=".activity.Transformer3DActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/ActionBarTheme"
+            />
 
         <activity
-            android:name=".LoopActivity"
+            android:name=".activity.LoopActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/ActionBarTheme"
+            />
+
+        <activity
+            android:name=".activity.InfiniteActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActionBarTheme"
+            />
 
     </application>
 

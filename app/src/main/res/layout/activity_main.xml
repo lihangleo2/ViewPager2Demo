@@ -4,47 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
 
-    <Button
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="50dp"
-        android:id="@+id/btn_base_use"
-        android:text="SmartViewPager2Adapter基本使用"
+    <TextView
+        android:id="@+id/btn_tiktok_use"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_base_use"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="基本使用（抖音的快速实现）"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
         android:id="@+id/btn_gallery_use"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="画廊的使用"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_gallery_use"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_tiktok_use"
+        app:bl_unPressed_solid_color="@color/color_gallery"
+        app:bl_pressed_solid_color="@color/color_gallery_80"
+        />
+
+    <TextView
         android:id="@+id/btn_3d_use"
-        android:text="3dTransformer使用"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_3d_use"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="3dTransformer使用"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/btn_loop_use"
-        android:text="无线循环的使用"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_gallery_use"
+        app:bl_unPressed_solid_color="@color/color_gallery"
+        app:bl_pressed_solid_color="@color/color_gallery_80"
+        />
+
+    <TextView
+        android:id="@+id/btn_infinite"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="无线循环的使用"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_3d_use"
+        app:bl_unPressed_solid_color="@color/color_infinite"
+        app:bl_pressed_solid_color="@color/color_infinite_80"
+        />
+
+    <TextView
+        android:id="@+id/btn_loop"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="自动滚动的使用"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_infinite"
+        app:bl_unPressed_solid_color="@color/color_infinite"
+        app:bl_pressed_solid_color="@color/color_infinite_80"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

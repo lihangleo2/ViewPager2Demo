@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary_80">#80008577</color>
+    <color name="colorPrimaryDark">#008577</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="color_baseUse">#4FCDF3</color>
+    <color name="color_baseUse_80">#804FCDF3</color>
+
+    <color name="color_gallery">#F3B14F</color>
+    <color name="color_gallery_80">#80F3B14F</color>
+    <color name="color_infinite">#F3544F</color>
+    <color name="color_infinite_80">#80F3544F</color>
+
 </resources>

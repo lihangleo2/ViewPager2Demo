@@ -3,7 +3,37 @@
     <style name="Base.Theme.ViewPager2Demo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.ViewPager2Demo" parent="Base.Theme.ViewPager2Demo" />
+
+    <style name="CustomActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/colorPrimaryDark</item>
+    </style>
+
+
+
+    <style name="ActionBarTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionBarStyle">@style/CustomActionBar</item>
+    </style>
+
+    <style name="ButtonStyle" >
+        <item name="bl_corners_radius">30dp</item>
+        <item name="bl_unPressed_solid_color">@color/color_baseUse</item>
+        <item name="bl_pressed_solid_color">@color/color_baseUse_80</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
 </resources>

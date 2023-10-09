@@ -1,4 +1,4 @@
-package com.leo.viewpager2demo
+package com.leo.viewpager2demo.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,20 +13,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        mBinding.btnBaseUse.setOnClickListener {
-            startActivity(Intent(this,KotlinUseActivity::class.java))
+        supportActionBar?.title="SmartVp2Adapter的使用"
+        mBinding.btnTiktokUse.setOnClickListener {
+            startActivity(Intent(this, TiktokActivity::class.java))
         }
 
         mBinding.btnGalleryUse.setOnClickListener {
-            startActivity(Intent(this,GalleryUseActivity::class.java))
+            startActivity(Intent(this, GalleryUseActivity::class.java))
         }
 
         mBinding.btn3dUse.setOnClickListener {
-            startActivity(Intent(this,Transformer3DActivity::class.java))
+            startActivity(Intent(this, Transformer3DActivity::class.java))
         }
 
-        mBinding.btnLoopUse.setOnClickListener {
-            startActivity(Intent(this,LoopActivity::class.java))
+        mBinding.btnInfinite.setOnClickListener {
+            startActivity(Intent(this, InfiniteActivity::class.java))
+        }
+
+        mBinding.btnLoop.setOnClickListener {
+            startActivity(Intent(this, LoopActivity::class.java))
         }
 
     }
