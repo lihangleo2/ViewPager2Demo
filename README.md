@@ -138,10 +138,45 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 ```
 <br>
 
-### 三、方法详解
+### 三、无线循环和自动滚动
+
+#### 3.1 无线循环
+```
+//一句代码即可加上循环模式
+.setInfinite(true)
+```
+
+#### 3.2 自动滚动
+
+* 加上自动滚动功能
+  ```
+  .isAutoLoop()
+  ```
+
+* 设置滚动间隔时间
+  ```
+  .setLoopTime(3000L)
+  ```
+
+* 设置切换滚动时长（也就是item1滚动到item2所需的时长）
+  注意scrollTime≤LoopTime时，会滚动的很流畅，请谨慎设置
+  ```
+  //
+  .setScrollTime(600L)
+  ```
+
+  * 滚动模式下绑定当前页面的lifeCycle，提升app性能
+  ```
+  .addLifecycleObserver()
+  ```
+  
+<br>
+
+
+### 四、方法详解
 这里我会把重要的方法拿出来讲，其他的会出个表格
 
-#### 3.1 数据加载
+#### 4.1 数据加载
 
 * 向下无感加载数据
   ```
@@ -159,7 +194,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   ```
 <br>
 
-#### 3.2 设置监听
+#### 4.2 设置监听
 
 * 设置头部加载监听（不设置则不触发）
   ```
@@ -177,7 +212,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   ```
 <br>
 
-#### 3.2 结束监听
+#### 4.3 结束监听
 
 * 头部已经不能翻页时，调用。将不再触发头部监听。
   ```
@@ -189,7 +224,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   .finishLoadMoreWithNoMoreData()
   ```
 
-#### 3.3 ViewPager2滑动效果
+#### 4.4 ViewPager2滑动效果
 
 * SmartTransformer.TRANSFORMER_3D 3d滑动效果
 * SmartTransformer.TRANSFORMER_ALPHA_SCALE 缩放透明度效果
