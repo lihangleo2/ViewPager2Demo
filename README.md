@@ -43,7 +43,7 @@
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery3d.gif" alt="Sample">
 <br/>
 
-* ### version2.0
+* ### version2.0 [挑战至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%B8%89%E6%97%A0%E7%BA%BF%E5%BE%AA%E7%8E%AF%E5%92%8C%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8)
 |无线循环模式|自动滚动模式|
 |:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/infinite.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loop.gif" alt="Sample">
