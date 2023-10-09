@@ -31,19 +31,19 @@
 
 ## 效果展示
 为录制流畅，截图分辨率模糊。可下载apk查看真机效果
-* ### 基础功能展示 [挑战至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%B8%80%E4%B8%A4%E5%8F%A5%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E6%8A%96%E9%9F%B3%E6%95%88%E6%9E%9C)
+* ### 基础功能展示 [跳转至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%B8%80%E4%B8%A4%E5%8F%A5%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E6%8A%96%E9%9F%B3%E6%95%88%E6%9E%9C)
 |几句代码实现抖音列表|向上或向下加载数据|设置加载监听|
 |:---:|:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/base.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loadfront.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/listener.gif" alt="Sample"  width="100%">
 <br/>
 
-* ### 画廊功能展示 [挑战至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%BA%8C%E7%94%BB%E5%BB%8A%E6%95%88%E6%9E%9C)
+* ### 画廊功能展示 [跳转至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%BA%8C%E7%94%BB%E5%BB%8A%E6%95%88%E6%9E%9C)
 |asGallery一句代码搞定|3d画廊|
 |:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery3d.gif" alt="Sample">
 <br/>
 
-* ### version2.0 [挑战至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%B8%89%E6%97%A0%E7%BA%BF%E5%BE%AA%E7%8E%AF%E5%92%8C%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8)
+* ### version2.0 [跳转至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%B8%89%E6%97%A0%E7%BA%BF%E5%BE%AA%E7%8E%AF%E5%92%8C%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8)
 |无线循环模式|自动滚动模式|
 |:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/infinite.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loop.gif" alt="Sample">
