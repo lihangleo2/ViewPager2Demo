@@ -159,17 +159,16 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   ```
 
 * 设置切换滚动时长（也就是item1滚动到item2所需的时长）
+
   注意scrollTime≤LoopTime时，会滚动的很流畅，请谨慎设置
   ```
-  //
   .setScrollTime(600L)
   ```
 
-  * 滚动模式下绑定当前页面的lifeCycle，提升app性能
+* 滚动模式下绑定当前页面的lifeCycle，提升app性能
   ```
   .addLifecycleObserver()
   ```
-  
 <br>
 
 
