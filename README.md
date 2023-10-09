@@ -43,6 +43,12 @@
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery3d.gif" alt="Sample">
 <br/>
 
+* ### version2.0
+|无线循环模式|自动滚动模式|
+|:---:|:---:|
+|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/infinite.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loop.gif" alt="Sample">
+<br/>
+
 
 
 ## 添加依赖
