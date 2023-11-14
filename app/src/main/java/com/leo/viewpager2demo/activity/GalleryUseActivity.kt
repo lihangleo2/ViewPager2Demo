@@ -7,13 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.leo.viewpager2demo.R
-import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.ActivityGalleryBinding
 import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
 import com.leo.viewpager2demo.util.DataUtil
 import com.smart.adapter.SmartViewPager2Adapter
 import com.smart.adapter.transformer.SmartTransformer
+
 
 /**
  * @Author leo123456
@@ -25,12 +25,14 @@ class GalleryUseActivity : AppCompatActivity() {
     private val mAdapter by lazy {
         SmartViewPager2Adapter(this, mBinding.viewPager2)
             .cancleOverScrollMode()
+            /**
+             * 实现画廊功能
+             * */
             .asGallery(ConvertUtils.dp2px(50f),ConvertUtils.dp2px(50f))
             .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
             .setOffscreenPageLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
-            //可以在这里初始化数据
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true))
     }
 

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="api使用圆形指示器"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager1"
+        app:layout_constraintLeft_toLeftOf="@+id/viewPager1"
+        app:layout_constraintRight_toRightOf="@+id/viewPager1"
+        app:layout_constraintTop_toTopOf="@+id/viewPager1" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xml使用圆形指示器"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager2"
+        app:layout_constraintLeft_toLeftOf="@+id/viewPager2"
+        app:layout_constraintRight_toRightOf="@+id/viewPager2"
+        app:layout_constraintTop_toTopOf="@+id/viewPager2" />
+
+    <com.smart.adapter.indicator.CircleIndicator
+        android:id="@+id/circle_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:lh_indicator_mode="fill"
+        app:lh_indicator_radius="10dp"
+        app:lh_indicator_scrollWithViewPager2="true"
+        app:lh_indicator_selectColor="#FF0101"
+        app:lh_indicator_space="10dp"
+        app:lh_indicator_strokeWidth="1.5dp"
+        app:lh_indicator_unselectColor="#FFEB3B" />
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager3"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="api使用线性指示器"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager3"
+        app:layout_constraintLeft_toLeftOf="@+id/viewPager3"
+        app:layout_constraintRight_toRightOf="@+id/viewPager3"
+        app:layout_constraintTop_toTopOf="@+id/viewPager3" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager4"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xml使用线性指示器"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager4"
+        app:layout_constraintLeft_toLeftOf="@+id/viewPager4"
+        app:layout_constraintRight_toRightOf="@+id/viewPager4"
+        app:layout_constraintTop_toTopOf="@+id/viewPager4" />
+
+
+    <!-- 指示器高度，决定线性指示器高度 -->
+    <com.smart.adapter.indicator.LineIndicator
+        android:id="@+id/line_indicator"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager4"
+        app:layout_constraintLeft_toLeftOf="@+id/viewPager4"
+        app:layout_constraintRight_toRightOf="@+id/viewPager4"
+        app:line_indicator_selectColor="#000000"
+        app:line_indicator_space="10dp"
+        app:line_indicator_unselectColor="#FBA4A4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

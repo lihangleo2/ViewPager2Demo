@@ -7,7 +7,7 @@
     tools:context=".activity.MainActivity">
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btn_tiktok_use"
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
@@ -19,60 +19,83 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btn_gallery_use"
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="画廊的使用"
+        app:bl_pressed_solid_color="@color/color_gallery_80"
+        app:bl_unPressed_solid_color="@color/color_gallery"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_tiktok_use"
-        app:bl_unPressed_solid_color="@color/color_gallery"
-        app:bl_pressed_solid_color="@color/color_gallery_80"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btn_tiktok_use" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btn_3d_use"
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="3dTransformer使用"
+        app:bl_pressed_solid_color="@color/color_gallery_80"
+        app:bl_unPressed_solid_color="@color/color_gallery"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_gallery_use"
-        app:bl_unPressed_solid_color="@color/color_gallery"
-        app:bl_pressed_solid_color="@color/color_gallery_80"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btn_gallery_use" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btn_infinite"
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="无线循环的使用"
+        app:bl_pressed_solid_color="@color/color_infinite_80"
+        app:bl_unPressed_solid_color="@color/color_infinite"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_3d_use"
-        app:bl_unPressed_solid_color="@color/color_infinite"
-        app:bl_pressed_solid_color="@color/color_infinite_80"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btn_3d_use" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/btn_loop"
         style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="自动滚动的使用"
+        app:bl_pressed_solid_color="@color/color_infinite_80"
+        app:bl_unPressed_solid_color="@color/color_infinite"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_infinite"
-        app:bl_unPressed_solid_color="@color/color_infinite"
-        app:bl_pressed_solid_color="@color/color_infinite_80"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btn_infinite" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btn_side"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="边界滑动监听的使用"
+        app:bl_pressed_solid_color="@color/color_side_80"
+        app:bl_unPressed_solid_color="@color/color_side"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_loop" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btn_indicator_use"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="指示器的使用"
+        app:bl_pressed_solid_color="@color/color_indicator_80"
+        app:bl_unPressed_solid_color="@color/color_indicator"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_side" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

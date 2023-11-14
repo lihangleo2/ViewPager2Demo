@@ -23,12 +23,14 @@ class InfiniteActivity : AppCompatActivity() {
     private val mAdapter by lazy {
         SmartViewPager2Adapter(this, mBinding.viewPager2)
             .cancleOverScrollMode()
+            /**
+             * 实现无线循环模式
+             * */
             .setInfinite(true)
             .asGallery(ConvertUtils.dp2px(50f), ConvertUtils.dp2px(50f))
             .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
-            //可以在这里初始化数据
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 1))
     }
 
@@ -61,12 +63,12 @@ class InfiniteActivity : AppCompatActivity() {
             }
 
             R.id.add_front_data -> {
-                mAdapter.addFrontData(SourceBean(-99, "", R.mipmap.image_15, 1))
+                mAdapter.addFrontData(SourceBean(( mAdapter.getItem(0) as SourceBean).id-1, "", R.mipmap.image_15, 1))
                 ToastUtils.showShort("添加成功")
             }
 
             R.id.add_data -> {
-                mAdapter.addData(SourceBean(99, "", R.mipmap.image_16, 1))
+                mAdapter.addData(SourceBean((mAdapter.getItem(mAdapter.itemCount-1) as SourceBean).id+1, "", R.mipmap.image_16, 1))
                 ToastUtils.showShort("添加成功")
             }
         }

@@ -1,4 +1,4 @@
-package com.leo.viewpager2demo.fragment
+package com.leo.viewpager2demo.activity_genericity.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +8,19 @@ import androidx.fragment.app.Fragment
 import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.FragmentTextBinding
 import com.smart.adapter.interf.SmartFragmentImpl
+import com.smart.adapter.interf.SmartFragmentImpl2
 import com.smart.adapter.interf.SmartFragmentTypeExEntity
 
 /**
  * @Author leo
  * @Date 2023/9/8
  */
-class TextFragment: Fragment(), SmartFragmentImpl {
+class TextGenFragment : Fragment(), SmartFragmentImpl2<SourceBean> {
     private lateinit var mBinding: FragmentTextBinding
     private lateinit var mSourceBean: SourceBean
 
-    override fun initSmartFragmentData(bean: SmartFragmentTypeExEntity) {
-        this.mSourceBean = bean as SourceBean
+    override fun initSmartFragmentData(bean: SourceBean) {
+        this.mSourceBean = bean
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,4 +41,6 @@ class TextFragment: Fragment(), SmartFragmentImpl {
         mBinding.txt.text = mSourceBean.text
         mBinding.txtIndex.text = "${mSourceBean.id}"
     }
+
+
 }

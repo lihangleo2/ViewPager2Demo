@@ -5,9 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ConvertUtils
-import com.blankj.utilcode.util.ToastUtils
 import com.leo.viewpager2demo.R
-import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.ActivityLoopBinding
 import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
@@ -25,6 +23,9 @@ class LoopActivity : AppCompatActivity() {
         SmartViewPager2Adapter(this, mBinding.viewPager2)
             .cancleOverScrollMode()
             .setInfinite(true)
+            /**
+             * 实现自动滚动；如果不是无线循环模式下，在endIndex滑动下一条，会直接到第1条
+             * */
             .isAutoLoop()
             .addLifecycleObserver()
             .setLoopTime(3000L)

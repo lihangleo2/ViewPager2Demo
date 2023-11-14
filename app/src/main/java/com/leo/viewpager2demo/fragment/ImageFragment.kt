@@ -42,4 +42,6 @@ class ImageFragment : Fragment(), SmartFragmentImpl {
     }
 
 
+
+
 }

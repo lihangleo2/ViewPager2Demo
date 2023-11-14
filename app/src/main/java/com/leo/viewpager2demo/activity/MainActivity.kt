@@ -1,9 +1,9 @@
 package com.leo.viewpager2demo.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.leo.viewpager2demo.databinding.ActivityMainBinding
+import com.leo.viewpager2demo.kotlinEx.jumpToActivityWithClick
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,27 +13,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        supportActionBar?.title="SmartVp2Adapter的使用"
-        mBinding.btnTiktokUse.setOnClickListener {
-            startActivity(Intent(this, TiktokActivity::class.java))
-        }
+        supportActionBar?.title = "SmartVp2Adapter的使用"
 
-        mBinding.btnGalleryUse.setOnClickListener {
-            startActivity(Intent(this, GalleryUseActivity::class.java))
+        mBinding.run {
+            btnTiktokUse.jumpToActivityWithClick(TiktokActivity::class.java)
+            btnGalleryUse.jumpToActivityWithClick(GalleryUseActivity::class.java)
+            btn3dUse.jumpToActivityWithClick(Transformer3DActivity::class.java)
+            btnInfinite.jumpToActivityWithClick(InfiniteActivity::class.java)
+            btnLoop.jumpToActivityWithClick(LoopActivity::class.java)
+            btnSide.jumpToActivityWithClick(SideUseActivity::class.java)
+            btnIndicatorUse.jumpToActivityWithClick(IndicatorActivity::class.java)
         }
-
-        mBinding.btn3dUse.setOnClickListener {
-            startActivity(Intent(this, Transformer3DActivity::class.java))
-        }
-
-        mBinding.btnInfinite.setOnClickListener {
-            startActivity(Intent(this, InfiniteActivity::class.java))
-        }
-
-        mBinding.btnLoop.setOnClickListener {
-            startActivity(Intent(this, LoopActivity::class.java))
-        }
-
     }
 
 }

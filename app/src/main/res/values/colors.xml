@@ -13,5 +13,9 @@
     <color name="color_gallery_80">#80F3B14F</color>
     <color name="color_infinite">#F3544F</color>
     <color name="color_infinite_80">#80F3544F</color>
+    <color name="color_side">#4F86F3</color>
+    <color name="color_side_80">#804F86F3</color>
+    <color name="color_indicator">#CF4FF3</color>
+    <color name="color_indicator_80">#80CF4FF3</color>
 
 </resources>

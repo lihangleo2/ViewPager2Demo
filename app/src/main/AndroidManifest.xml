@@ -56,6 +56,18 @@
             android:theme="@style/ActionBarTheme"
             />
 
+        <activity
+            android:name=".activity.SideUseActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActionBarTheme" />
+
+        <activity
+            android:name=".activity.IndicatorActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActionBarTheme" />
+
     </application>
 
 </manifest>
