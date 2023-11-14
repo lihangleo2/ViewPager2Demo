@@ -1,14 +1,9 @@
 package com.leo.viewpager2demo.activity
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.blankj.utilcode.util.ConvertUtils
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.leo.viewpager2demo.R
 import com.leo.viewpager2demo.bean.SourceBean
@@ -17,10 +12,7 @@ import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
 import com.leo.viewpager2demo.util.DataUtil
 import com.smart.adapter.SmartViewPager2Adapter
-import com.smart.adapter.indicator.CircleIndicator
-import com.smart.adapter.indicator.SmartGravity
 import com.smart.adapter.indicator.SmartIndicator
-import com.smart.adapter.transformer.SmartTransformer
 
 /**
  * @Author leo
