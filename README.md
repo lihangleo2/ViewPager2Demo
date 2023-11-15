@@ -253,6 +253,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
     }
 
 ```
+<br>
 
 ### 5.1 指示器详解：
 * 圆形指示器的使用
@@ -295,7 +296,32 @@ xml里如下：
 //关键代码，xml里的指示器
 .withIndicator(mBinding.circleIndicator)
 ```
+<br>
 
+### 5.2 边缘滑动监听：
+使用也非常简单，当然此监听也是支持横或者竖的viewPager2
+```java
+    private val mAdapter by lazy {
+        SmartViewPager2Adapter(this, mBinding.viewPager2)
+            .setOffscreenPageLimit(3)
+            .addFragment(1, ImageFragment::class.java)
+            .addFragment(2, TextFragment::class.java)
+            .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
+            /**
+             * 设置左右边界滑动监听
+             * */
+            .setOnSideListener(object : onSideListener {
+                override fun onLeftSide() {
+                    ToastUtils.showShort("触发左边缘事件")
+
+                }
+                override fun onRightSide() {
+                    ToastUtils.showShort("触发右边缘事件")
+                }
+
+            })
+    }
+```
   
 
 ### 其他方法
