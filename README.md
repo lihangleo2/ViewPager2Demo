@@ -178,7 +178,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 <br>
 
 
-### 四、方法详解
+### 四、数据加载监听和滑动效果
 这里我会把重要的方法拿出来讲，其他的会出个表格
 
 #### 4.1 数据加载
