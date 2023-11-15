@@ -49,6 +49,12 @@
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/infinite.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loop.gif" alt="Sample">
 <br/>
 
+* ### version2.1.0
+|指示器的使用|指示器自动更新|边缘滑动监听|
+|:---:|:---:|:---:|
+|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator_add.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/slide.gif" alt="Sample"  width="100%">
+<br/>
+
 
 
 ## 添加依赖
