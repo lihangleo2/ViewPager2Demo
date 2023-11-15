@@ -96,7 +96,7 @@
 <br>
 
 #### 1.2、步骤二：设置给viewpager2（做完这下就搞定了，你没看错）
-```
+```java
 mBinding.viewPager2.adapter = mAdapter
 ```
 <br>
@@ -135,7 +135,7 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl2<Source
 
 ### 二、画廊效果
 画廊只需要加上如下代码，无需在xml里写clipChildren="false"这些代码，解放xml
-```
+```java
 //如果是横向就是左右，竖直的话就是上下。adapter会自己判断
 .asGallery(int leftMargin,int rightMargin)
 
@@ -147,7 +147,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 ### 三、无线循环和自动滚动
 
 #### 3.1 无线循环
-```
+```java
 //一句代码即可加上循环模式
 .setInfinite(true)
 ```
@@ -155,24 +155,24 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 #### 3.2 自动滚动
 
 * 加上自动滚动功能
-  ```
+  ```java
   .isAutoLoop()
   ```
 
 * 设置滚动间隔时间
-  ```
+  ```java
   .setLoopTime(3000L)
   ```
 
 * 设置切换滚动时长（也就是item1滚动到item2所需的时长）
 
   注意scrollTime≤LoopTime时，会滚动的很流畅，请谨慎设置
-  ```
+  ```java
   .setScrollTime(600L)
   ```
 
 * 滚动模式下绑定当前页面的lifeCycle，提升app性能
-  ```
+  ```java
   .addLifecycleObserver()
   ```
 <br>
@@ -184,17 +184,17 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 #### 4.1 数据加载
 
 * 向下无感加载数据
-  ```
+  ```java
   .addData(List<SmartFragmentTypeExEntity> list)
   ```
 
 * 向上无感加载数据
-  ```
+  ```java
   .addFrontData(List<SmartFragmentTypeExEntity> list)
   ```
 
 * 加载对应type的fragment.class
-  ```
+  ```java
   .addFragment(type, Fragment.class)
   ```
 <br>
@@ -202,17 +202,17 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 #### 4.2 设置监听
 
 * 设置头部加载监听（不设置则不触发）
-  ```
+  ```java
   .setOnRefreshListener(OnRefreshListener listener)
   ```
 
 * 设置底部加载监听（不设置则不触发）
-  ```
+  ```java
   .setLoadMoreListener(OnLoadMoreListener listener)
   ```
 
 * 同时设置头部和底部监听（不设置则不触发）
-  ```
+  ```java
   .setOnRefreshLoadMoreListener(OnRefreshLoadMoreListener listener)
   ```
 <br>
@@ -220,12 +220,12 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 #### 4.3 结束监听
 
 * 头部已经不能翻页时，调用。将不再触发头部监听。
-  ```
+  ```java
   .finishRefreshWithNoMoreData()
   ```
 
 * 底部已经不能翻页时，调用。将不再触发底部监听。
-  ```
+  ```java
   .finishLoadMoreWithNoMoreData()
   ```
 
@@ -233,12 +233,62 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 
 * SmartTransformer.TRANSFORMER_3D 3d滑动效果
 * SmartTransformer.TRANSFORMER_ALPHA_SCALE 缩放透明度效果
-  ```
+  ```java
   .setPagerTransformer(SmartTransformer enum)
   ```
+
+### 五、指示器的使用和边缘滑动监听
+指示器的使用也是非常的简单，如下：（demo里的IndicatorActivity有具体用法）。
+* 特别注意，使用withIndicator(SmartIndicator.CIRCLE) api，必须是viewPage2的父控件是ConstraintLayout布局，否则建议使用xml里的方式，不受父控件约束
+```java
+    private val mAdapter by lazy {
+        SmartViewPager2Adapter(this, mBinding.viewPager1)
+            //关键代码
+            .withIndicator(SmartIndicator.CIRCLE)
+            .addFragment(1, ImageFragment::class.java)
+            .addFragment(2, TextFragment::class.java)
+            .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
+    }
+
+```
+
+### 5.1 指示器详解：
+* 圆形指示器的使用
+```java
+.withIndicator(SmartIndicator.CIRCLE)
+```
+
+* 线性指示器的使用
+```java
+.withIndicator(SmartIndicator.LINE) 
+```
+
+* 以上会默认在居中靠下的位置，设置位置你可以使用以下api
+```java
+.withIndicator(SmartIndicator.CIRCLE,SmartGravity.LEFT_BOTTOM, ConvertUtils.dp2px(20f),ConvertUtils.dp2px(20f)) 
+```
+
+* 你还可以将指示器放在xml里，这样可以更强自定义指示器样式，及把指示器放置你布局里想放置的任何位置，不受父控件影响
+```xml里如下：
+    <com.smart.adapter.indicator.CircleIndicator
+        android:id="@+id/circle_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:lh_indicator_mode="fill"
+        app:lh_indicator_radius="10dp"
+        app:lh_indicator_scrollWithViewPager2="true"
+        app:lh_indicator_selectColor="#FF0101"
+        app:lh_indicator_space="10dp"
+        app:lh_indicator_strokeWidth="1.5dp"
+        app:lh_indicator_unselectColor="#FFEB3B" />
+```
   
 
-其他方法
+### 其他方法
 |name|format|description|
 |:---:|:---:|:---:|
 |.getDataList()|List\<SmartFragmentTypeExEntity\>|返回数据源|
