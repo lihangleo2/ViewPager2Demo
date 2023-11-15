@@ -241,6 +241,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 |setVertical()|boolean|是否设置竖直viewpager2，默认横向|
 |setOffscreenPageLimit()|integer|设置预加载数量|
 |setPreLoadLimit()|integer|设置滑动到limit触发预加载监听|
+|setUserEnabled()|boolean|是否允许用户左右滑动|
 
 <br/>
 
