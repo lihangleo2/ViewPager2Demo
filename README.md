@@ -49,7 +49,7 @@
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/infinite.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loop.gif" alt="Sample">
 <br/>
 
-* ### version2.1.0
+* ### version2.1.0 [跳转至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%BA%94%E6%8C%87%E7%A4%BA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E8%BE%B9%E7%BC%98%E6%BB%91%E5%8A%A8%E7%9B%91%E5%90%AC)
 |指示器的使用|指示器自动更新|边缘滑动监听|
 |:---:|:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator_add.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/slide.gif" alt="Sample"  width="100%">
@@ -236,6 +236,8 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   ```java
   .setPagerTransformer(SmartTransformer enum)
   ```
+<br>
+
 
 ### 五、指示器的使用和边缘滑动监听
 指示器的使用也是非常的简单，如下：（demo里的IndicatorActivity有具体用法）。
