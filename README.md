@@ -269,7 +269,8 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 ```
 
 * 你还可以将指示器放在xml里，这样可以更强自定义指示器样式，及把指示器放置你布局里想放置的任何位置，不受父控件影响
-```xml里如下：
+xml里如下：
+```xml
     <com.smart.adapter.indicator.CircleIndicator
         android:id="@+id/circle_indicator"
         android:layout_width="wrap_content"
@@ -286,6 +287,13 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
         app:lh_indicator_strokeWidth="1.5dp"
         app:lh_indicator_unselectColor="#FFEB3B" />
 ```
+
+代码如下,是不是超级简单：
+```java
+//关键代码，xml里的指示器
+.withIndicator(mBinding.circleIndicator)
+```
+
   
 
 ### 其他方法
