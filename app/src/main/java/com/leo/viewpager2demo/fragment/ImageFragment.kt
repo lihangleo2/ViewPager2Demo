@@ -10,18 +10,19 @@ import com.leo.viewpager2demo.R
 import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.FragmentImageBinding
 import com.smart.adapter.interf.SmartFragmentImpl
+import com.smart.adapter.interf.SmartFragmentImpl2
 import com.smart.adapter.interf.SmartFragmentTypeExEntity
 
 /**
  * @Author leo
  * @Date 2023/9/1
  */
-class ImageFragment : Fragment(), SmartFragmentImpl {
+class ImageFragment : Fragment(), SmartFragmentImpl2<SourceBean> {
     private lateinit var mBinding: FragmentImageBinding
     private lateinit var mSourceBean: SourceBean
 
-    override fun initSmartFragmentData(bean: SmartFragmentTypeExEntity) {
-        this.mSourceBean = bean as SourceBean
+    override fun initSmartFragmentData(bean: SourceBean) {
+        this.mSourceBean = bean
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
