@@ -20,7 +20,7 @@
 
 
 ## SmartViewPager2Adapter动态
-* [SmartViewPager2Adapter2.1.0更新动态及以往版本](https://github.com/lihangleo2/ViewPager2Demo/wiki)
+* [SmartViewPager2Adapter更新动态及以往版本](https://github.com/lihangleo2/ViewPager2Demo/wiki)
 
 
 ## Demo
