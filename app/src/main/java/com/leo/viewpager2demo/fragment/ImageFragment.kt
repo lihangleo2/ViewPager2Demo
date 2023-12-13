@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.blankj.utilcode.util.LogUtils
 import com.bumptech.glide.Glide
 import com.leo.viewpager2demo.R
 import com.leo.viewpager2demo.bean.SourceBean
@@ -27,7 +28,6 @@ class ImageFragment : Fragment(), SmartFragmentImpl2<SourceBean> {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentImageBinding.inflate(inflater, container, false);
-
         return mBinding.root
     }
 

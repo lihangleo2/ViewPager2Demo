@@ -12,7 +12,7 @@ data class SourceBean(
     var image:Int,
     var type:Int,
     var createTime:Long = System.currentTimeMillis()
-): SmartFragmentTypeExEntity {
+): SmartFragmentTypeExEntity() {
     override fun getFragmentType(): Int {
         return type
     }
