@@ -70,7 +70,7 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.1.1'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.1.2'
    }
   ```
 <br/>
@@ -104,7 +104,8 @@ mBinding.viewPager2.adapter = mAdapter
 #### 1.3、步骤三：list数据源（注意点）；bean对象要实现接口：SmartFragmentTypeExEntity
 解析数据bean要实现SmartFragmentTypeExEntity接口，返回你在adapter里要生成的fragment的type。(也就是说type==1时生成图片fragment，这些逻辑adapter帮你操作了)
 ```java
-public class SourceBean implements SmartFragmentTypeExEntity {
+//2.1.2 SmartFragmentTypeExEntity 由接口改为抽象类了，整体变化不大
+public class SourceBean extends SmartFragmentTypeExEntity {
     int type;
 
     @Override
