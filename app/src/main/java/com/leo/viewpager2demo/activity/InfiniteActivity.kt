@@ -27,6 +27,7 @@ class InfiniteActivity : AppCompatActivity() {
              * 实现无线循环模式
              * */
             .setInfinite(true)
+            .setOffscreenPageLimit(5)
             .asGallery(ConvertUtils.dp2px(50f), ConvertUtils.dp2px(50f))
             .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
             .addFragment(1, ImageFragment::class.java)

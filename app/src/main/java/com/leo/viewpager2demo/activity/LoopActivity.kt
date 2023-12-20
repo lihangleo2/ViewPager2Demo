@@ -28,6 +28,7 @@ class LoopActivity : AppCompatActivity() {
              * */
             .isAutoLoop()
             .addLifecycleObserver()
+            .setOffscreenPageLimit(5)
             .setLoopTime(3000L)
             .setScrollTime(600L)
             .asGallery(ConvertUtils.dp2px(50f), ConvertUtils.dp2px(50f))
