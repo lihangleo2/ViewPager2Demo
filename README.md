@@ -341,7 +341,8 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl2<Source
 
     //....伪代码
     private void initView(){
-        //一般封装的baseFragement都通过一个方法去初始化页面，当然你也可以叫initData()这里随便。拿到mSourceBean去初始化页面
+        //一般封装的baseFragement都通过一个方法去初始化页面
+        //当然你也可以叫initData()这里随便。拿到mSourceBean去初始化页面
     }
 }
 ```
@@ -355,7 +356,8 @@ btn.setOnClickListener{
     //第一步：（因为你在fragment里），你要去改变按钮ui的样式
     //第二步：【重点】你要去修改数据源里的点赞字段假设：mSourceBean.isClick = 1
     //执行了第二步以后，你的数据源的isClick字段改变了。因为内存地址一样，数据源list里的数据也改变了。
-    //所以，当你随便滑动你的viewPager2，即使超过offscreenPageLimit，页面被销毁了，然后重建，因为数据源在这，样式也会恢复之前的状态。其实就和RecycleView里的Adapter里的用法是一样的
+    //所以，当你随便滑动你的viewPager2，即使超过offscreenPageLimit，
+    //页面被销毁了，然后重建，因为数据源在这，样式也会恢复之前的状态。其实就和RecycleView里的Adapter里的用法是一样的
 }
 ```
 以上是对此库页面刷新的用法。其实很简单
