@@ -329,7 +329,7 @@ xml里如下：
 本库开源以后，有很多说刷新问题和视频的问题，这个这里详细讲解一下
 
 ### 6.1 刷新问题：
-我们首先是通过.addData()去设置数据源的，然后到了我们的fragment里。以上代码，在fragment里你可以拿到mSourceBean，注意这里的内存地址和数据源list里的内存地址指向一个地方的。记住这一点就好办了。
+我们首先是通过.addData()去设置数据源的，然后到了我们的fragment里。以下代码，在fragment里你可以拿到mSourceBean，注意这里的内存地址和数据源list里的内存地址指向一个地方的。记住这一点就好办了。
 ```java
 public class ImageFragment extends Fragment implements SmartFragmentImpl2<SourceBean> {
     private SourceBean mSourceBean;
