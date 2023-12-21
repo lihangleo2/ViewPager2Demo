@@ -325,6 +325,81 @@ xml里如下：
 ```
 <br>
 
+### 六、刷新问题和视频的用法问题
+本库开源以后，有很多说刷新问题和视频的问题，这个这里详细讲解一下
+
+### 6.1 刷新问题：
+我们首先是通过.addData()去设置数据源的，然后到了我们的fragment里。以上代码，在fragment里你可以拿到mSourceBean，注意这里的内存地址和数据源list里的内存地址指向一个地方的。记住这一点就好办了。
+```java
+public class ImageFragment extends Fragment implements SmartFragmentImpl2<SourceBean> {
+    private SourceBean mSourceBean;
+    //....伪代码
+    @Override
+    public void initSmartFragmentData(SourceBean bean) {
+        this.mSourceBean = bean
+    }
+
+    //....伪代码
+    private void initView(){
+        //一般封装的baseFragement都通过一个方法去初始化页面，当然你也可以叫initData()这里随便。拿到mSourceBean去初始化页面
+    }
+}
+```
+
+<br>
+
+需求来了：假设你有一个点赞按钮，点击了，从未点赞状态变成了红色点赞状态如下：
+
+```java
+btn.setOnClickListener{
+    //第一步：（因为你在fragment里），你要去改变按钮ui的样式
+    //第二步：【重点】你要去修改数据源里的点赞字段假设：mSourceBean.isClick = 1
+    //执行了第二步以后，你的数据源的isClick字段改变了。因为内存地址一样，数据源list里的数据也改变了。
+    //所以，当你随便滑动你的viewPager2，即使超过offscreenPageLimit，页面被销毁了，然后重建，因为数据源在这，样式也会恢复之前的状态。其实就和RecycleView里的Adapter里的用法是一样的
+}
+```
+以上是对此库页面刷新的用法。其实很简单
+<br>
+
+### 6.1 视频在fragment里的用法：
+视频用法也是极其简单，我这里放我baseFragment里的封装，我相信大部分开发者都会有一个base，如下：
+```java
+public abstract BaseFragment{
+    //....伪代码
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //初始化子布局
+        initView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!isLoaded && !isHidden) {
+            lazyInit()
+            isLoaded = true
+        }
+
+        if (!isHidden) {
+            onVisible()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        onInVisible()
+    }
+}
+```
+这里有3个方法
+* initView() 在这里你可以初始化你的视频数据，甚至preLoad(因为缓存问题会加载很多个fragment,只要你不播放视频即可)
+* onVisible() 页面可见时，播放视频
+* onInVisible() 页面不可见时，暂停播放。假设你滑回这个页面你向从第一帧开始播放，你可以将视频seekTo到第0秒的时间。也是非常的方便。
+
+希望各位我表达清楚了。感谢，让我们共同维护这个库，让你在使用ViewPager2的时候，是如此简单
+
+
+
+<br>
 
 ### 其他方法
 |name|format|description|
