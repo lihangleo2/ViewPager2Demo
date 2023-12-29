@@ -68,6 +68,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/ActionBarTheme" />
 
+        <activity
+            android:name=".activity.RemoveActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActionBarTheme" />
+
     </application>
 
 </manifest>

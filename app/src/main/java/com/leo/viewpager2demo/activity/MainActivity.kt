@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
             btnLoop.jumpToActivityWithClick(LoopActivity::class.java)
             btnSide.jumpToActivityWithClick(SideUseActivity::class.java)
             btnIndicatorUse.jumpToActivityWithClick(IndicatorActivity::class.java)
+            btnRemoveUse.jumpToActivityWithClick(RemoveActivity::class.java)
         }
     }
 
