@@ -70,7 +70,7 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.1.3'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.1.4'
    }
   ```
 <br/>
@@ -192,6 +192,11 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
 * 向上无感加载数据
   ```java
   .addFrontData(List<SmartFragmentTypeExEntity> list)
+  ```
+
+* 移除数据
+  ```java
+  .removeData(index: Int)
   ```
 
 * 加载对应type的fragment.class
