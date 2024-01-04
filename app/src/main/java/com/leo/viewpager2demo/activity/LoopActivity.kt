@@ -31,7 +31,6 @@ class LoopActivity : AppCompatActivity() {
             .addLifecycleObserver()
             .setOffscreenPageLimit(5)
             .setLoopTime(3000L)
-            .setScrollTime(600L)
             .asGallery(ConvertUtils.dp2px(50f), ConvertUtils.dp2px(50f))
             .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
             .addFragment(1, ImageFragment::class.java)
