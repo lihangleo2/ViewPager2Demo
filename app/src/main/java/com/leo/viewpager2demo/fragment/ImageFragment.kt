@@ -5,20 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.blankj.utilcode.util.LogUtils
 import com.bumptech.glide.Glide
-import com.leo.viewpager2demo.R
 import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.FragmentImageBinding
 import com.smart.adapter.interf.SmartFragmentImpl
-import com.smart.adapter.interf.SmartFragmentImpl2
-import com.smart.adapter.interf.SmartFragmentTypeExEntity
 
 /**
  * @Author leo
  * @Date 2023/9/1
  */
-class ImageFragment : Fragment(), SmartFragmentImpl2<SourceBean> {
+class ImageFragment : Fragment(), SmartFragmentImpl<SourceBean> {
     private lateinit var mBinding: FragmentImageBinding
     private lateinit var mSourceBean: SourceBean
 

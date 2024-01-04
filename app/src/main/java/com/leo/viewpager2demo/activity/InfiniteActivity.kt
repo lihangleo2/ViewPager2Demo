@@ -21,7 +21,7 @@ import com.smart.adapter.transformer.SmartTransformer
  */
 class InfiniteActivity : AppCompatActivity() {
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager2)
+        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
             .cancleOverScrollMode()
             /**
              * 实现无线循环模式

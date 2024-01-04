@@ -34,8 +34,8 @@ object DataUtil {
     //模拟生成加载数据
     //isGallery 只生成图片数据
     @JvmStatic
-    fun productDatas(index: Int, isLoadMore: Boolean, isGallery: Boolean = false,produceSize:Int=10): MutableList<SmartFragmentTypeExEntity> {
-        var newDats = mutableListOf<SmartFragmentTypeExEntity>()
+    fun productDatas(index: Int, isLoadMore: Boolean, isGallery: Boolean = false,produceSize:Int=10): MutableList<SourceBean> {
+        var newDats = mutableListOf<SourceBean>()
 
         if (isLoadMore) {
             for (i in index..index +(produceSize-1)) {
@@ -93,22 +93,22 @@ object DataUtil {
 
 
     @JvmStatic
-    fun productFrontDatas(mAdapter: SmartViewPager2Adapter): MutableList<SmartFragmentTypeExEntity> {
+    fun productFrontDatas(mAdapter: SmartViewPager2Adapter<SourceBean>): MutableList<SourceBean> {
         return productDatas((mAdapter.getItem(0) as SourceBean).id - 1, false)
     }
 
     @JvmStatic
-    fun productBackDatas(mAdapter: SmartViewPager2Adapter): MutableList<SmartFragmentTypeExEntity> {
+    fun productBackDatas(mAdapter: SmartViewPager2Adapter<SourceBean>): MutableList<SourceBean> {
         return productDatas((mAdapter.getItem(mAdapter.itemCount - 1) as SourceBean).id + 1, true)
     }
 
     @JvmStatic
-    fun productImageFrontDatas(mAdapter: SmartViewPager2Adapter,produceSize:Int=10): MutableList<SmartFragmentTypeExEntity> {
+    fun productImageFrontDatas(mAdapter: SmartViewPager2Adapter<SourceBean>,produceSize:Int=10): MutableList<SourceBean> {
         return productDatas((mAdapter.getItem(0) as SourceBean).id - 1, false,true,produceSize)
     }
 
     @JvmStatic
-    fun productImageBackDatas(mAdapter: SmartViewPager2Adapter,produceSize:Int=10): MutableList<SmartFragmentTypeExEntity> {
+    fun productImageBackDatas(mAdapter: SmartViewPager2Adapter<SourceBean>,produceSize:Int=10): MutableList<SourceBean> {
         return productDatas((mAdapter.getItem(mAdapter.itemCount - 1) as SourceBean).id + 1, true,true,produceSize)
     }
 }

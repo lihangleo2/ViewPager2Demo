@@ -3,6 +3,7 @@ package com.leo.viewpager2demo.activity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.Activity3duseBinding
 import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
@@ -18,7 +19,7 @@ class Transformer3DActivity : AppCompatActivity() {
 
 
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager2)
+        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
             /**
              * 设置3D滑动效果
              * 你可以自定义，继承系统 ViewPager2.PageTransformer，然后通过 mViewPager2.setPageTransformer()，实现自定义效果

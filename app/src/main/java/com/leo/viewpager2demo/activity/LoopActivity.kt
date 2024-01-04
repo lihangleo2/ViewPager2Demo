@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ConvertUtils
 import com.leo.viewpager2demo.R
+import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.ActivityLoopBinding
 import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
@@ -20,7 +21,7 @@ import com.smart.adapter.transformer.SmartTransformer
 class LoopActivity : AppCompatActivity() {
 
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager2)
+        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
             .cancleOverScrollMode()
             .setInfinite(true)
             /**

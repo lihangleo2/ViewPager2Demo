@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.leo.viewpager2demo.R
+import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.ActivityGalleryBinding
 import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
@@ -23,7 +24,7 @@ class GalleryUseActivity : AppCompatActivity() {
 
 
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager2)
+        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
             .cancleOverScrollMode()
             /**
              * 实现画廊功能

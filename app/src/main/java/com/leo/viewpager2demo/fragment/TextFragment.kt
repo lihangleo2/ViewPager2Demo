@@ -5,18 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.blankj.utilcode.util.LogUtils
 import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.FragmentTextBinding
 import com.smart.adapter.interf.SmartFragmentImpl
-import com.smart.adapter.interf.SmartFragmentImpl2
-import com.smart.adapter.interf.SmartFragmentTypeExEntity
 
 /**
  * @Author leo
  * @Date 2023/9/8
  */
-class TextFragment : Fragment(), SmartFragmentImpl2<SourceBean> {
+class TextFragment : Fragment(), SmartFragmentImpl<SourceBean> {
     private lateinit var mBinding: FragmentTextBinding
     private lateinit var mSourceBean: SourceBean
 

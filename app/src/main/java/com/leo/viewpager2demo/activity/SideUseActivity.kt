@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ToastUtils
+import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.ActivitySideuseBinding
 import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
@@ -18,7 +19,7 @@ import com.smart.adapter.interf.onSideListener
  */
 class SideUseActivity : AppCompatActivity() {
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager2)
+        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
             .setOffscreenPageLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)

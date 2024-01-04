@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.leo.viewpager2demo.R
-import com.leo.viewpager2demo.databinding.ActivityGalleryBinding
+import com.leo.viewpager2demo.bean.SourceBean
 import com.leo.viewpager2demo.databinding.ActivityRemoveBinding
 import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
@@ -23,7 +22,7 @@ import com.smart.adapter.transformer.SmartTransformer
  */
 class RemoveActivity : AppCompatActivity() {
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager2)
+        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
             .setOffscreenPageLimit(5)
             .setPreLoadLimit(3)
             .addFragment(1, ImageFragment::class.java)
@@ -51,13 +50,13 @@ class RemoveActivity : AppCompatActivity() {
     private fun initLoadMoreListener(){
         //加载监听
         mAdapter.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
-            override fun onRefresh(smartAdapter: SmartViewPager2Adapter) {
+            override fun onRefresh(smartAdapter: SmartViewPager2Adapter<*>) {
                 mBinding.viewPager2.postDelayed({
                     mAdapter.addFrontData(DataUtil.productFrontDatas(mAdapter))
                 }, 2000)
             }
 
-            override fun onLoadMore(smartAdapter: SmartViewPager2Adapter) {
+            override fun onLoadMore(smartAdapter: SmartViewPager2Adapter<*>) {
                 mBinding.viewPager2.postDelayed({
                     mAdapter.addData(DataUtil.productBackDatas(mAdapter))
                 }, 2000)
