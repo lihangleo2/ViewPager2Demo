@@ -22,11 +22,12 @@ import com.smart.adapter.transformer.SmartTransformer
  */
 class RemoveActivity : AppCompatActivity() {
     private val mAdapter by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
             .setOffscreenPageLimit(5)
             .setPreLoadLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
             //可以在这里初始化数据
             .addData(DataUtil.productDatas(0, true))
     }

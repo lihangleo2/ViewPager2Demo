@@ -21,8 +21,8 @@ import com.smart.adapter.transformer.SmartTransformer
  */
 class InfiniteActivity : AppCompatActivity() {
     private val mAdapter by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
-            .cancleOverScrollMode()
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
+            .overScrollNever()
             /**
              * 实现无线循环模式
              * */
@@ -32,6 +32,7 @@ class InfiniteActivity : AppCompatActivity() {
             .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 1))
     }
 

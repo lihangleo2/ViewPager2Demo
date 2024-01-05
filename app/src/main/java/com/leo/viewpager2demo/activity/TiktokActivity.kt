@@ -3,6 +3,7 @@ package com.leo.viewpager2demo.activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.gyf.immersionbar.ktx.immersionBar
 import com.leo.viewpager2demo.bean.SourceBean
@@ -23,13 +24,14 @@ class TiktokActivity : AppCompatActivity() {
 
 
     private val mAdapter by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
-              // 是否取消滑动最边上时出现的阴影
-//            .cancleOverScrollMode()
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
+            // 取消viewPager2滑动边缘阴影
+            //.overScrollNever()
             .setOffscreenPageLimit(5)
             .setPreLoadLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
             //可以在这里初始化数据
             .addData(DataUtil.productDatas(0, true))
     }
@@ -45,7 +47,6 @@ class TiktokActivity : AppCompatActivity() {
         mBinding = ActivityKotuseBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
         initViewPager2()
-
     }
 
     private fun initViewPager2() {

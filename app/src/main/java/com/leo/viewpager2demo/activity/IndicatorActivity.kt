@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.leo.viewpager2demo.R
 import com.leo.viewpager2demo.bean.SourceBean
@@ -12,6 +13,7 @@ import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
 import com.leo.viewpager2demo.util.DataUtil
 import com.smart.adapter.SmartViewPager2Adapter
+import com.smart.adapter.indicator.SmartGravity
 import com.smart.adapter.indicator.SmartIndicator
 
 /**
@@ -43,14 +45,15 @@ class IndicatorActivity : AppCompatActivity() {
      * * .withIndicator(SmartIndicator.CIRCLE,SmartGravity.LEFT_BOTTOM, ConvertUtils.dp2px(20f),ConvertUtils.dp2px(20f))
      * */
     private val mAdapter by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager1)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
             //关键代码
             .withIndicator(SmartIndicator.CIRCLE)
             //设置指示器位置代码
-//            .withIndicator(SmartIndicator.CIRCLE,SmartGravity.LEFT_BOTTOM, ConvertUtils.dp2px(20f),ConvertUtils.dp2px(20f))
+            //.withIndicator(SmartIndicator.CIRCLE, SmartGravity.LEFT_BOTTOM, ConvertUtils.dp2px(20f), ConvertUtils.dp2px(20f))
             .setOffscreenPageLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager1)
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
     }
 
@@ -60,22 +63,22 @@ class IndicatorActivity : AppCompatActivity() {
     }
 
 
-
-
     /**
      * 2.在xml里使用指示器：超强自定义指示器
      * */
     private val mAdapter2 by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
             .setInfinite(true)
-            .isAutoLoop(true)
+            .setAutoLoop(true)
             //关键代码，xml里的指示器
             .withIndicator(mBinding.circleIndicator)
             .setOffscreenPageLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
     }
+
     private fun initIndicator2() {
         mBinding.viewPager2.adapter = mAdapter2
     }
@@ -85,37 +88,38 @@ class IndicatorActivity : AppCompatActivity() {
      * 2.api使用 线性指示器 lineIndicator
      * */
     private val mAdapter3 by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager3)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
             //线性指示器
             .withIndicator(SmartIndicator.LINE)
             .setOffscreenPageLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager3)
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
     }
+
     private fun initIndicator3() {
         mBinding.viewPager3.adapter = mAdapter3
     }
-
 
 
     /**
      * 2.在xml里使用指示器：超强自定义指示器
      * */
     private val mAdapter4 by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager4)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
             //关键代码，xml里的指示器
             .withIndicator(mBinding.lineIndicator)
             .setOffscreenPageLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager4)
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
     }
 
     private fun initIndicator4() {
         mBinding.viewPager4.adapter = mAdapter4
     }
-
 
 
     private fun initActionBar() {

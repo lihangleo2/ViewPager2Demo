@@ -19,7 +19,7 @@ class Transformer3DActivity : AppCompatActivity() {
 
 
     private val mAdapter by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
             /**
              * 设置3D滑动效果
              * 你可以自定义，继承系统 ViewPager2.PageTransformer，然后通过 mViewPager2.setPageTransformer()，实现自定义效果
@@ -28,6 +28,7 @@ class Transformer3DActivity : AppCompatActivity() {
             .setOffscreenPageLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
             //可以在这里初始化数据
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true))
     }

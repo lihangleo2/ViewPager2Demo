@@ -19,10 +19,11 @@ import com.smart.adapter.interf.onSideListener
  */
 class SideUseActivity : AppCompatActivity() {
     private val mAdapter by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
             .setOffscreenPageLimit(3)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
             /**
              * 设置左右边界滑动监听

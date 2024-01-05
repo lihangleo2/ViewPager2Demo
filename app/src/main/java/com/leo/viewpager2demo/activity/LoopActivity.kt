@@ -21,13 +21,13 @@ import com.smart.adapter.transformer.SmartTransformer
 class LoopActivity : AppCompatActivity() {
 
     private val mAdapter by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
-            .cancleOverScrollMode()
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
+            .overScrollNever()
             .setInfinite(true)
             /**
              * 实现自动滚动；如果不是无线循环模式下，在endIndex滑动下一条，会直接到第1条
              * */
-            .isAutoLoop()
+            .setAutoLoop()
             .addLifecycleObserver()
             .setOffscreenPageLimit(5)
             .setLoopTime(3000L)
@@ -35,6 +35,7 @@ class LoopActivity : AppCompatActivity() {
             .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
             //可以在这里初始化数据
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true))
     }

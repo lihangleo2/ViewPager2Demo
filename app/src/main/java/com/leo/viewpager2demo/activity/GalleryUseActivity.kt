@@ -24,16 +24,17 @@ class GalleryUseActivity : AppCompatActivity() {
 
 
     private val mAdapter by lazy {
-        SmartViewPager2Adapter<SourceBean>(this, mBinding.viewPager2)
-            .cancleOverScrollMode()
-            /**
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
+            .overScrollNever()
+             /**
              * 实现画廊功能
              * */
             .asGallery(ConvertUtils.dp2px(50f),ConvertUtils.dp2px(50f))
             .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
             .setOffscreenPageLimit(3)
-            .addFragment(1, ImageFragment::class.java)
-            .addFragment(2, TextFragment::class.java)
+            .addFragment(1,ImageFragment::class.java)
+            .addFragment(2,TextFragment::class.java)
+            .build(mBinding.viewPager2)
             .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true))
     }
 
