@@ -13,7 +13,7 @@ import com.smart.adapter.interf.SmartFragmentImpl
  * @Author leo
  * @Date 2023/9/8
  */
-class TextFragment : Fragment(), SmartFragmentImpl<SourceBean> {
+class TextFragment : BaseFragment(), SmartFragmentImpl<SourceBean> {
     private lateinit var mBinding: FragmentTextBinding
     private lateinit var mSourceBean: SourceBean
 
@@ -23,20 +23,13 @@ class TextFragment : Fragment(), SmartFragmentImpl<SourceBean> {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentTextBinding.inflate(inflater, container, false);
-        initView()
         return mBinding.root
     }
 
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun initView() {
+    override fun initView() {
+        super.initView()
         mBinding.txt.text = mSourceBean.text
         mBinding.txtIndex.text = "${mSourceBean.id}"
     }
+
 }

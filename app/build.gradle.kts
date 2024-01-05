@@ -11,8 +11,8 @@ android {
         applicationId = "com.leo.viewpager2demo"
         minSdk = 29
         targetSdk = 31
-        versionCode = 212
-        versionName = "2.1.2"
+        versionCode = 300
+        versionName = "3.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
