@@ -93,16 +93,14 @@
 ```
 <br>
 
-#### 1.2、步骤二：设置给viewpager2（做完这下就搞定了，你没看错）
+### 1.2、步骤二：设置给viewpager2（做完这下就搞定了，你没看错）
 ```java
 mBinding.viewPager2.adapter = mAdapter
 ```
 <br>
 
-#### 1.3、步骤三：list数据源（注意点）；bean对象要实现接口：SmartFragmentTypeExEntity
-解析数据bean要实现SmartFragmentTypeExEntity接口，返回你在adapter里要生成的fragment的type。(也就是说type==1时生成图片fragment，这些逻辑adapter帮你操作了)
+### 1.3、步骤三：数据源对象bean要实现接口：SmartFragmentTypeExEntity
 ```java
-//2.1.2 SmartFragmentTypeExEntity 由接口改为抽象类了，整体变化不大
 public class SourceBean extends SmartFragmentTypeExEntity {
     int type;
 
@@ -112,13 +110,10 @@ public class SourceBean extends SmartFragmentTypeExEntity {
     }
 }
 ```
+* 数据源bean实现此即可后，例如：通过方法.addFragment(1, ImageFragment::class.java)(也就是说type==1时生成ImageFragment，这些逻辑adapter帮你操作了)
 <br>
 
-#### 1.4、步骤四：fragment（注意点）
-* 可以看到方法.addFragment(type, Fragment.class)，这里结合步骤三就很清楚了。
-* 比如上面的基础使用里调用了.addFragment(1, ImageFragment::class.java)。最后加载了数据.addData(list)，这样adapter会自动在数据里找到对应的tyep，然后生成你要的fragment。
-
-注意你的fragment必须实现SmartFragmentImpl接口，这个接口是让adapter把数据回传给你，以便你做页面操作。
+### 1.4、步骤四：目标fragment要实现接口：SmartFragmentImpl<T>
 ```java
 public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceBean> {
     //....伪代码
@@ -128,8 +123,13 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
     }
 }
 ```
+* 要使用SmartViewPager2Adapter，你的目标fragment必须要实现SmartFragmentImpl<T>接口，adapter会将数据回传给fragment
 
 <br/>
+
+
+## 二、数据加载及监听
+
 
 
 ### 二、画廊效果
