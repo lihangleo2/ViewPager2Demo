@@ -1,5 +1,4 @@
 # 万能ViewPager2适配器--SmartViewPager2Adapter
-[![](https://jitpack.io/v/lihangleo2/SmartViewPager2Adapter.svg)](https://jitpack.io/#lihangleo2/SmartViewPager2Adapter)
 [![](https://img.shields.io/badge/license-MIT-green)](https://github.com/lihangleo2/ViewPager2Demo/blob/main/LICENSE)
 ## 特点功能
 完全脱离xml，所有效果只需要通过api调用
