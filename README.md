@@ -32,7 +32,7 @@
 
 ## 效果展示
 为录制流畅，截图分辨率模糊。可下载apk查看真机效果
-* ### 基础功能展示 
+* ### 基础功能展示  [跳转基础使用文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E4%B8%80%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8)  ------  [跳转数据加载监听文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E4%BA%8C%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E5%8F%8A%E7%9B%91%E5%90%AC) 
 |几句代码实现抖音列表|向上或向下加载数据|设置加载监听|
 |:---:|:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/base.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loadfront.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/listener.gif" alt="Sample"  width="100%">
