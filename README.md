@@ -32,25 +32,25 @@
 
 ## 效果展示
 为录制流畅，截图分辨率模糊。可下载apk查看真机效果
-* ### 基础功能展示  [跳转基础使用文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E4%B8%80%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8)  ------  [跳转数据加载监听文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E4%BA%8C%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E5%8F%8A%E7%9B%91%E5%90%AC) 
+* ### 基础功能展示  [跳转基础使用文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E4%B8%80%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8)  ------  [跳转数据加载及监听文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E4%BA%8C%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E5%8F%8A%E7%9B%91%E5%90%AC) 
 |几句代码实现抖音列表|向上或向下加载数据|设置加载监听|
 |:---:|:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/base.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loadfront.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/listener.gif" alt="Sample"  width="100%">
 <br/>
 
-* ### 画廊效果
+* ### 画廊效果 [跳转此文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E4%B8%89%E7%94%BB%E5%BB%8A%E6%95%88%E6%9E%9C)
 |asGallery一句代码搞定|3d画廊|
 |:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery3d.gif" alt="Sample">
 <br/>
 
-* ### 无限循环和自动滚动
+* ### 无限循环和自动滚动 [跳转此文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E5%9B%9B%E6%97%A0%E7%BA%BF%E5%BE%AA%E7%8E%AF%E5%92%8C%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8)
 |无限循环|自动滚动|
 |:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/infinite.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loop.gif" alt="Sample">
 <br/>
 
-* ### 指示器功能及边缘滑动监听
+* ### 指示器功能及边缘滑动监听 [指示器文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E4%BA%94%E6%8C%87%E7%A4%BA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8)
 |指示器的使用|指示器自动更新|边缘滑动监听|
 |:---:|:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator_add.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/slide.gif" alt="Sample"  width="100%">
