@@ -145,7 +145,63 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
   mAdapter.removeData(index: Int)
   ```
 
+* 根据position获取对象
+  ```java
+  //getLastItem() 获取last item
+  //getItemOrNull() 不存在position会返回null
+  var item = mAdapter.getItem(index: Int)
+  ```
 
+* 获取数据源list
+  ```java
+  var list = mAdapter.getData()
+  ```
+
+### 2.2、监听类api
+使用加载监听可以搭配此设置。不设置则默认是3
+  ```java
+  //设置滑动到limit触发预加载监听
+  .setPreLoadLimit(3)
+  ```
+
+* 设置头部加载监听（不设置则不触发）
+  ```java
+mAdapter.setOnRefreshListener(object :OnRefreshListener{
+    override fun onRefresh(smartAdapter: SmartViewPager2Adapter<*>) {
+    //滑动到preLoadLimit后触发头部加载监听
+    }
+})
+  ```
+
+* 设置底部加载监听（不设置则不触发）
+  ```java
+mAdapter.setOnLoadMoreListener(object :OnLoadMoreListener{
+     override fun onLoadMore(smartAdapter: SmartViewPager2Adapter<*>) {
+     //滑动到preLoadLimit后触发底部加载监听
+     }
+})
+  ```
+
+* 同时设置头部和底部监听（不设置则不触发）
+  ```java
+  .setOnRefreshLoadMoreListener(OnRefreshLoadMoreListener listener)
+  ```
+<br>
+
+#### 4.3 结束监听
+
+* 头部已经不能翻页时，调用。将不再触发头部监听。
+  ```java
+  .finishRefreshWithNoMoreData()
+  ```
+
+* 底部已经不能翻页时，调用。将不再触发底部监听。
+  ```java
+  .finishLoadMoreWithNoMoreData()
+  ```
+
+
+//////////////////////////////////////////////
 ### 二、画廊效果
 画廊只需要加上如下代码，无需在xml里写clipChildren="false"这些代码，解放xml
 ```java
@@ -217,35 +273,7 @@ setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
   ```
 <br>
 
-#### 4.2 设置监听
 
-* 设置头部加载监听（不设置则不触发）
-  ```java
-  .setOnRefreshListener(OnRefreshListener listener)
-  ```
-
-* 设置底部加载监听（不设置则不触发）
-  ```java
-  .setLoadMoreListener(OnLoadMoreListener listener)
-  ```
-
-* 同时设置头部和底部监听（不设置则不触发）
-  ```java
-  .setOnRefreshLoadMoreListener(OnRefreshLoadMoreListener listener)
-  ```
-<br>
-
-#### 4.3 结束监听
-
-* 头部已经不能翻页时，调用。将不再触发头部监听。
-  ```java
-  .finishRefreshWithNoMoreData()
-  ```
-
-* 底部已经不能翻页时，调用。将不再触发底部监听。
-  ```java
-  .finishLoadMoreWithNoMoreData()
-  ```
 
 #### 4.4 ViewPager2滑动效果
 
