@@ -446,10 +446,17 @@ public abstract BaseFragment{
             .removeData(index) //移除数据
             .addLifecycleObserver() //自动滚动下绑定页面生命周期：即离开页面暂停滚动，回到页面恢复滚动
             .removeLifecycleObserver() //移除页面监听
-            .finishRefresh() //结束头部刷新状态，继续触发监听(addData，addFrontData默认调用此方法)，此方法针对数据加载失败时需要主动调用
+            //结束头部刷新状态，继续触发监听(addData，addFrontData默认调用此方法)，此方法针对数据加载失败时需要主动调用
+            .finishRefresh() 
             .finishLoadMore() //同上
             .finishRefreshWithNoMoreData() //头部已经不能翻页时，调用。将不再触发头部监听。
             .finishLoadMoreWithNoMoreData() //底部已经不能翻页时，调用。将不再触发底部监听。
+            .canScroll(false) //viewPager2不可手势滑动
+            .overScrollNever() //取消viewPager2边缘阴影
+            .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)//设置滑动效果
+            .setLoopTime(3000L) //设置滚动间隔时间
+            .setScrollTime(600L) //设置轮播切换速度
+
 
             //监听
             .setOnRefreshLoadMoreListener(object :OnRefreshLoadMoreListener{ //加载监听
