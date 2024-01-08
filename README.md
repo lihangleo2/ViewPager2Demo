@@ -110,7 +110,8 @@ public class SourceBean extends SmartFragmentTypeExEntity {
     }
 }
 ```
-* 数据源bean实现此即可后，例如：通过方法.addFragment(1, ImageFragment::class.java)(也就是说type==1时生成ImageFragment，这些逻辑adapter帮你操作了)
+数据源bean实现此即可后，例如：通过方法.addFragment(1, ImageFragment::class.java)(也就是说type==1时生成ImageFragment，这些逻辑adapter帮你操作了)
+
 <br>
 
 ### 1.4、步骤四：目标fragment要实现接口：SmartFragmentImpl<T>
@@ -123,7 +124,7 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
     }
 }
 ```
-* 要使用SmartViewPager2Adapter，你的目标fragment必须要实现SmartFragmentImpl<T>接口，adapter会将数据回传给fragment
+要使用SmartViewPager2Adapter，你的目标fragment必须要实现SmartFragmentImpl<T>接口，adapter会将数据回传给fragment
 
 <br/>
 
