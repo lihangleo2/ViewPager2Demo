@@ -164,7 +164,7 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
   .setPreLoadLimit(3)
   ```
 
-#### 2.2.1、设置头部加载监听（不设置则不触发）
+* 设置头部加载监听（不设置则不触发）
   ```java
             mAdapter.setOnRefreshListener(object : OnRefreshListener {
                 override fun onRefresh(smartAdapter: SmartViewPager2Adapter<*>) {
@@ -174,7 +174,7 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
             })
   ```
 
-#### 2.2.2、设置底部加载监听（不设置则不触发）
+* 设置底部加载监听（不设置则不触发）
   ```java
             mAdapter.setOnLoadMoreListener(object :OnLoadMoreListener{
                 override fun onLoadMore(smartAdapter: SmartViewPager2Adapter<*>) {
@@ -184,8 +184,7 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
             })
   ```
 
-
-#### 2.2.3、同时设置头部和底部监听（不设置则不触发）
+* 同时设置头部和底部监听（不设置则不触发）
   ```java
             mAdapter.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
                 override fun onRefresh(smartAdapter: SmartViewPager2Adapter<*>) {
@@ -199,7 +198,7 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
             })
   ```
 
-  #### 2.2.4、设置ViewPager2边缘滑动监听（不设置则不触发）
+* 设置ViewPager2边缘滑动监听（不设置则不触发）
   ```java
         mAdapter.setOnSideListener(object :onSideListener{
             override fun onLeftSide() {
@@ -214,136 +213,91 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
   ```
 <br>
 
-#### 4.3 结束监听
+### 2.3 数据加载其他方法
 
 * 头部已经不能翻页时，调用。将不再触发头部监听。
   ```java
-  .finishRefreshWithNoMoreData()
+  mAdapter.finishRefreshWithNoMoreData()
   ```
 
 * 底部已经不能翻页时，调用。将不再触发底部监听。
   ```java
-  .finishLoadMoreWithNoMoreData()
+  mAdapter..finishLoadMoreWithNoMoreData()
   ```
 
+* 结束头部刷新状态，继续触发监听
+  ```java
+  //1.注意调用mAdapter.addData(list)和mAdapter.addFrontData(list)也会触发此效果，无须主动调用
+  //2.此方法针对调用加载接口时，接口异常等无数据情况下需要主动调用
+  mAdapter.finishRefresh()
+  ```
+  
+* 结束底部刷新状态，继续触发监听
+  ```java
+  //同上
+  mAdapter.finishLoadMore()
+  ```
 
-//////////////////////////////////////////////
-### 二、画廊效果
+## 三、画廊效果
 画廊只需要加上如下代码，无需在xml里写clipChildren="false"这些代码，解放xml
 ```java
-//如果是横向就是左右，竖直的话就是上下。adapter会自己判断
-.asGallery(int leftMargin,int rightMargin)
-
-//想要加上滑动效果只需要加上（后续会加上更多效果）
-setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
-```
-<br>
-
-### 三、无线循环和自动滚动
-
-#### 3.1 无线循环
-```java
-//一句代码即可加上循环模式
-.setInfinite(true)
+    private val mAdapter by lazy {
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
+            //实现画廊功能，参数为左右间距
+            .asGallery(ConvertUtils.dp2px(50f),ConvertUtils.dp2px(50f))
+            //设置滑动效果
+            .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE)
+            .addFragment(1,ImageFragment::class.java)
+            .addFragment(2,TextFragment::class.java)
+            .build(mBinding.viewPager2)
+            .addData(list)
+    }
 ```
 
-#### 3.2 自动滚动
-
-* 加上自动滚动功能
-  ```java
-  .isAutoLoop()
-  ```
-
-* 设置滚动间隔时间
-  ```java
-  .setLoopTime(3000L)
-  ```
-
-* 设置切换滚动时长（也就是item1滚动到item2所需的时长）
-
-  注意scrollTime≤LoopTime时，会滚动的很流畅，请谨慎设置
-  ```java
-  .setScrollTime(600L)
-  ```
-
-* 滚动模式下绑定当前页面的lifeCycle，提升app性能
-  ```java
-  .addLifecycleObserver()
-  ```
-<br>
-
-
-### 四、数据加载监听和滑动效果
-这里我会把重要的方法拿出来讲，其他的会出个表格
-
-#### 4.1 数据加载
-
-* 向下无感加载数据
-  ```java
-  .addData(List<SmartFragmentTypeExEntity> list)
-  ```
-
-* 向上无感加载数据
-  ```java
-  .addFrontData(List<SmartFragmentTypeExEntity> list)
-  ```
-
-* 移除数据
-  ```java
-  .removeData(index: Int)
-  ```
-
-* 加载对应type的fragment.class
-  ```java
-  .addFragment(type, Fragment.class)
-  ```
-<br>
-
-
-
-#### 4.4 ViewPager2滑动效果
-
-* SmartTransformer.TRANSFORMER_3D 3d滑动效果
-* SmartTransformer.TRANSFORMER_ALPHA_SCALE 缩放透明度效果
-  ```java
-  .setPagerTransformer(SmartTransformer enum)
-  ```
-<br>
-
-
-### 五、指示器的使用和边缘滑动监听
-指示器的使用也是非常的简单，如下：（demo里的IndicatorActivity有具体用法）。
-* 特别注意，使用withIndicator(SmartIndicator.CIRCLE) api，必须是viewPage2的父控件是ConstraintLayout布局，否则建议使用xml里的方式，不受父控件约束
+## 四、无线循环和自动滚动
 ```java
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager1)
-            //关键代码
-            .withIndicator(SmartIndicator.CIRCLE)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
+            //实现无线循环模式
+            .setInfinite(true)
+            //实现自动滚动
+            .setAutoLoop(true)
+            //自动滚动下绑定页面生命周期：即离开页面暂停滚动，回到页面恢复滚动
+            .addLifecycleObserver()
+            //滚动间隔时间
+            .setLoopTime(3000L)
+            //切换轮播滚动速度
+            .setScrollTime(600L)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
-            .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
+            .build(mBinding.viewPager2)
+            .addData(list)
     }
+```
 
+## 五、指示器的使用
+指示器的使用也是非常的简单，如下：（demo里的IndicatorActivity有具体用法）。
+
+### 5.1、api使用指示器
+特别注意，使用withIndicator(SmartIndicator.CIRCLE) api，必须是viewPage2的父控件是ConstraintLayout布局，否则建议使用xml里的方式，不受父控件约束
+```java
+    private val mAdapter by lazy {
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
+            //圆形指示器：SmartIndicator.CIRCLE   线性指示器：SmartIndicator.LINE 
+            .withIndicator(SmartIndicator.CIRCLE)
+
+            //以上会默认在居中靠下的位置，设置位置你可以使用以下api
+            //.withIndicator(SmartIndicator.CIRCLE,SmartGravity.LEFT_BOTTOM, ConvertUtils.dp2px(20f),ConvertUtils.dp2px(20f)) 
+            .addFragment(1, ImageFragment::class.java)
+            .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
+            .addData(list)
+    }
 ```
 <br>
 
-### 5.1 指示器详解：
-* 圆形指示器的使用
-```java
-.withIndicator(SmartIndicator.CIRCLE)
-```
-
-* 线性指示器的使用
-```java
-.withIndicator(SmartIndicator.LINE) 
-```
-
-* 以上会默认在居中靠下的位置，设置位置你可以使用以下api
-```java
-.withIndicator(SmartIndicator.CIRCLE,SmartGravity.LEFT_BOTTOM, ConvertUtils.dp2px(20f),ConvertUtils.dp2px(20f)) 
-```
-
-* 你还可以将指示器放在xml里，这样可以更强自定义指示器样式，及把指示器放置你布局里想放置的任何位置，不受父控件影响
+### 5.2 布局xml里使用指示器：
+你还可以将指示器放在xml里，这样可以更强自定义指示器样式，及把指示器放置你布局里想放置的任何位置，不受父控件影响
 xml里如下：
 ```xml
     <com.smart.adapter.indicator.CircleIndicator
@@ -363,35 +317,16 @@ xml里如下：
         app:lh_indicator_unselectColor="#FFEB3B" />
 ```
 
-代码如下,是不是超级简单：
-```java
-//关键代码，xml里的指示器
-.withIndicator(mBinding.circleIndicator)
-```
-<br>
-
-### 5.2 边缘滑动监听：
-使用也非常简单，当然此监听也是支持横或者竖的viewPager2
+代码如下：
 ```java
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager2)
-            .setOffscreenPageLimit(3)
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
+            //关键代码，xml里的指示器
+            .withIndicator(mBinding.circleIndicator)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
-            .addData(DataUtil.productDatas(0, isLoadMore = true, isGallery = true, 4))
-            /**
-             * 设置左右边界滑动监听
-             * */
-            .setOnSideListener(object : onSideListener {
-                override fun onLeftSide() {
-                    ToastUtils.showShort("触发左边缘事件")
-
-                }
-                override fun onRightSide() {
-                    ToastUtils.showShort("触发右边缘事件")
-                }
-
-            })
+            .build(mBinding.viewPager2)
+            .addData(list)
     }
 ```
 <br>
@@ -428,7 +363,8 @@ btn.setOnClickListener{
     //第二步：【重点】你要去修改数据源里的点赞字段假设：mSourceBean.isClick = 1
     //执行了第二步以后，你的数据源的isClick字段改变了。因为内存地址一样，数据源list里的数据也改变了。
     //所以，当你随便滑动你的viewPager2，即使超过offscreenPageLimit，
-    //页面被销毁了，然后重建，因为数据源在这，样式也会恢复之前的状态。其实就和RecycleView里的Adapter里的用法是一样的
+    //页面被销毁了，然后重建，因为数据源在这，样式也会恢复之前的状态。
+    //其实就和RecycleView里的Adapter里的用法是一样的
 }
 ```
 以上是对此库页面刷新的用法。其实很简单
