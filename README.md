@@ -21,6 +21,7 @@
 
 ## SmartViewPager2Adapter动态
 * [SmartViewPager2Adapter更新动态及以往版本](https://github.com/lihangleo2/ViewPager2Demo/wiki)
+* 3.0后，更新了部分api,具体可以点击上面链接查看。从2.0升级到3.0的同学请注意。[不方便转移的，请查看2.0文档](https://github.com/lihangleo2/ViewPager2Demo/blob/main/README2.0.md)
 
 
 ## Demo
@@ -31,25 +32,25 @@
 
 ## 效果展示
 为录制流畅，截图分辨率模糊。可下载apk查看真机效果
-* ### 基础功能展示 [跳转基础使用文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%B8%80%E4%B8%A4%E5%8F%A5%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E6%8A%96%E9%9F%B3%E6%95%88%E6%9E%9C)  ------  [跳转数据加载监听文档](https://github.com/lihangleo2/ViewPager2Demo#%E5%9B%9B%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E7%9B%91%E5%90%AC%E5%92%8C%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C)
+* ### 基础功能展示 
 |几句代码实现抖音列表|向上或向下加载数据|设置加载监听|
 |:---:|:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/base.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loadfront.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/listener.gif" alt="Sample"  width="100%">
 <br/>
 
-* ### 画廊功能展示 [跳转至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%BA%8C%E7%94%BB%E5%BB%8A%E6%95%88%E6%9E%9C)
+* ### 画廊效果
 |asGallery一句代码搞定|3d画廊|
 |:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/gallery3d.gif" alt="Sample">
 <br/>
 
-* ### version2.0 [跳转至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%B8%89%E6%97%A0%E7%BA%BF%E5%BE%AA%E7%8E%AF%E5%92%8C%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8)
-|无线循环模式|自动滚动模式|
+* ### 无限循环和自动滚动
+|无限循环|自动滚动|
 |:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/infinite.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/loop.gif" alt="Sample">
 <br/>
 
-* ### version2.1.0 [跳转至此文档](https://github.com/lihangleo2/ViewPager2Demo#%E4%BA%94%E6%8C%87%E7%A4%BA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E8%BE%B9%E7%BC%98%E6%BB%91%E5%8A%A8%E7%9B%91%E5%90%AC)
+* ### 指示器功能及边缘滑动监听
 |指示器的使用|指示器自动更新|边缘滑动监听|
 |:---:|:---:|:---:|
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator_add.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/slide.gif" alt="Sample"  width="100%">
@@ -70,7 +71,7 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:2.1.4'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:3.0.0'
    }
   ```
 <br/>
@@ -82,16 +83,14 @@
 ```java
     
     private val mAdapter by lazy {
-        SmartViewPager2Adapter(this, mBinding.viewPager2)
-            .cancleOverScrollMode()
-            .setOffscreenPageLimit(5)
-            .setPreLoadLimit(3)
+        //SourceBean是你使用的数据泛型
+        SmartViewPager2Adapter.Builder<SourceBean>(this)
             .addFragment(1, ImageFragment::class.java)
             .addFragment(2, TextFragment::class.java)
+            .build(mBinding.viewPager2)
             //可以在这里初始化数据
             .addData(list)
     }
-
 ```
 <br>
 
@@ -120,9 +119,9 @@ public class SourceBean extends SmartFragmentTypeExEntity {
 * 可以看到方法.addFragment(type, Fragment.class)，这里结合步骤三就很清楚了。
 * 比如上面的基础使用里调用了.addFragment(1, ImageFragment::class.java)。最后加载了数据.addData(list)，这样adapter会自动在数据里找到对应的tyep，然后生成你要的fragment。
 
-注意你的fragment必须实现SmartFragmentImpl接口，这个接口是让adapter把数据回传给你，以便你做页面操作。【2.1.0后SmartFragmentImpl接口已舍弃，SmartFragmentImpl2加上泛型可以避免数据类型转换】
+注意你的fragment必须实现SmartFragmentImpl接口，这个接口是让adapter把数据回传给你，以便你做页面操作。
 ```java
-public class ImageFragment extends Fragment implements SmartFragmentImpl2<SourceBean> {
+public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceBean> {
     //....伪代码
     @Override
     public void initSmartFragmentData(SourceBean bean) {
