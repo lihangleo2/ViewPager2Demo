@@ -76,10 +76,9 @@
   ```
 <br/>
 
-## 一、基本使用
-### 两句代码实现抖音效果
+## 一、基本使用 
 使用此库，你只需在xml加上简单的viewPager2即可，其他只需调用方法即可
-### 1.1、步骤一：初始化adapter
+### 1.1、两句代码实现抖音效果：步骤一：初始化adapter
 ```java
     
     private val mAdapter by lazy {
