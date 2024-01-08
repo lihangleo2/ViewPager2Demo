@@ -164,27 +164,53 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
   .setPreLoadLimit(3)
   ```
 
-* 设置头部加载监听（不设置则不触发）
+#### 2.2.1、设置头部加载监听（不设置则不触发）
   ```java
-mAdapter.setOnRefreshListener(object :OnRefreshListener{
-    override fun onRefresh(smartAdapter: SmartViewPager2Adapter<*>) {
-    //滑动到preLoadLimit后触发头部加载监听
-    }
-})
+            mAdapter.setOnRefreshListener(object : OnRefreshListener {
+                override fun onRefresh(smartAdapter: SmartViewPager2Adapter<*>) {
+                    //滑动到preLoadLimit后触发头部加载监听
+
+                }
+            })
   ```
 
-* 设置底部加载监听（不设置则不触发）
+#### 2.2.2、设置底部加载监听（不设置则不触发）
   ```java
-mAdapter.setOnLoadMoreListener(object :OnLoadMoreListener{
-     override fun onLoadMore(smartAdapter: SmartViewPager2Adapter<*>) {
-     //滑动到preLoadLimit后触发底部加载监听
-     }
-})
+            mAdapter.setOnLoadMoreListener(object :OnLoadMoreListener{
+                override fun onLoadMore(smartAdapter: SmartViewPager2Adapter<*>) {
+                    //滑动到preLoadLimit后触发底部加载监听
+  
+                }
+            })
   ```
 
-* 同时设置头部和底部监听（不设置则不触发）
+
+#### 2.2.3、同时设置头部和底部监听（不设置则不触发）
   ```java
-  .setOnRefreshLoadMoreListener(OnRefreshLoadMoreListener listener)
+            mAdapter.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+                override fun onRefresh(smartAdapter: SmartViewPager2Adapter<*>) {
+                    
+                }
+
+                override fun onLoadMore(smartAdapter: SmartViewPager2Adapter<*>) {
+                    
+                }
+
+            })
+  ```
+
+  #### 2.2.4、设置ViewPager2边缘滑动监听（不设置则不触发）
+  ```java
+        mAdapter.setOnSideListener(object :onSideListener{
+            override fun onLeftSide() {
+                ToastUtils.showShort("触发左边缘事件")
+            }
+
+            override fun onRightSide() {
+                ToastUtils.showShort("触发右边缘事件")
+            }
+
+        })
   ```
 <br>
 
