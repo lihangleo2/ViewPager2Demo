@@ -161,7 +161,7 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
 ### 2.2、监听类api
 使用加载监听可以搭配此设置。不设置则默认是3
   ```java
-  //设置滑动到limit触发预加载监听
+  //设置滑动到preLoadLimit触发预加载监听
   .setPreLoadLimit(3)
   ```
 
@@ -239,6 +239,8 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
   mAdapter.finishLoadMore()
   ```
 
+<br>
+
 ## 三、画廊效果
 画廊只需要加上如下代码，无需在xml里写clipChildren="false"这些代码，解放xml
 ```java
@@ -254,6 +256,8 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
             .addData(list)
     }
 ```
+
+<br>
 
 ## 四、无线循环和自动滚动
 ```java
@@ -275,6 +279,8 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
             .addData(list)
     }
 ```
+
+<br>
 
 ## 五、指示器的使用
 指示器的使用也是非常的简单，如下：（demo里的IndicatorActivity有具体用法）。
@@ -332,7 +338,7 @@ xml里如下：
 ```
 <br>
 
-### 六、刷新问题和视频的用法问题
+## 六、刷新问题和视频的用法问题
 本库开源以后，有很多说刷新问题和视频的问题，这个这里详细讲解一下
 
 ### 6.1 刷新问题：
@@ -371,7 +377,7 @@ btn.setOnClickListener{
 以上是对此库页面刷新的用法。其实很简单
 <br>
 
-### 6.1 视频在fragment里的用法：
+### 6.2、视频在fragment里的用法：
 视频用法也是极其简单，我这里放我baseFragment里的封装，我相信大部分开发者都会有一个base，如下：
 ```java
 public abstract BaseFragment{
@@ -411,16 +417,64 @@ public abstract BaseFragment{
 
 <br>
 
-### 其他方法
-|name|format|description|
-|:---:|:---:|:---:|
-|.getDataList()|List\<SmartFragmentTypeExEntity\>|返回数据源|
-|.addDefaultFragment()|SmartFragmentImpl|找不到对应type的默认fragment|
-|cancleOverScrollMode()|void|取消viewpager2边缘阴影|
-|setVertical()|boolean|是否设置竖直viewpager2，默认横向|
-|setOffscreenPageLimit()|integer|设置预加载数量|
-|setPreLoadLimit()|integer|设置滑动到limit触发预加载监听|
-|setUserEnabled()|boolean|是否允许用户左右滑动|
+## 方法详解
+```java
+    private val mAdapter by lazy {
+        SmartViewPager2Adapter.Builder<SourceBean>(this) //SourceBean 泛型bean
+            //构造参数（3.0后部分api不可动态改变，规范及正确使用）
+            .overScrollNever() //取消viewPager2滑动边缘阴影
+            .canScroll(false) //viewPager2不可手势滑动
+            .setOffscreenPageLimit(5) //滑动到preLoadLimit触发预加载监听
+            .setPreLoadLimit(3) //设置viewPager2缓存
+            .addFragment(1, ImageFragment::class.java) //添加要生成的fragment
+            .addFragment(2, TextFragment::class.java)
+            .addDefaultFragment(TextFragment::class.java) //找不到对应type的数据时生成的默认fragment
+            .asGallery(50,50) //实现画廊
+            .setPagerTransformer(SmartTransformer.TRANSFORMER_ALPHA_SCALE) //设置滑动效果
+            .withIndicator(SmartIndicator.CIRCLE) // 添加指示器
+            .setVertical(true) //viewPager2是否竖直方向
+            .setInfinite(true) //实现无线循环模式
+            .setAutoLoop(true) //实现自动滚动
+            .addLifecycleObserver() //自动滚动下绑定页面生命周期：即离开页面暂停滚动，回到页面恢复滚动
+            .setLoopTime(3000L) //滚动间隔时间
+            .setScrollTime(600L) //切换轮播滚动速度
+            .build(mBinding.viewPager2) //绑定viewPager2
+
+            //方法
+            .addData(list) //添加数据
+            .addFrontData(list) //添加头部数据
+            .removeData(index) //移除数据
+            .addLifecycleObserver() //自动滚动下绑定页面生命周期：即离开页面暂停滚动，回到页面恢复滚动
+            .removeLifecycleObserver() //移除页面监听
+            .finishRefresh() //结束头部刷新状态，继续触发监听(addData，addFrontData默认调用此方法)，此方法针对数据加载失败时需要主动调用
+            .finishLoadMore() //同上
+            .finishRefreshWithNoMoreData() //头部已经不能翻页时，调用。将不再触发头部监听。
+            .finishLoadMoreWithNoMoreData() //底部已经不能翻页时，调用。将不再触发底部监听。
+
+            //监听
+            .setOnRefreshLoadMoreListener(object :OnRefreshLoadMoreListener{ //加载监听
+                override fun onRefresh(smartAdapter: SmartViewPager2Adapter<*>) {
+                    //滑动到preLoadLimit后触发头部加载监听
+                }
+
+                override fun onLoadMore(smartAdapter: SmartViewPager2Adapter<*>) {
+                    //滑动到preLoadLimit后触发底部加载监听
+                }
+
+            })
+            .setOnSideListener(object : onSideListener { //左右边界滑动监听
+                override fun onLeftSide() {
+                    //触发左边缘事件
+
+                }
+                override fun onRightSide() {
+                    //触发右边缘事件
+                }
+
+            })
+    }
+
+```
 
 <br/>
 
