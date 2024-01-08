@@ -129,7 +129,21 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
 
 
 ## 二、数据加载及监听
+### 2.1、数据类api
+* 向下无感加载数据
+  ```java
+  mAdapter.addData(list)
+  ```
 
+* 向上无感加载数据
+  ```java
+  mAdapter.addFrontData(list)
+  ```
+
+* 移除数据
+  ```java
+  mAdapter.removeData(index: Int)
+  ```
 
 
 ### 二、画廊效果
