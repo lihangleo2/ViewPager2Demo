@@ -110,7 +110,7 @@ public class SourceBean extends SmartFragmentTypeExEntity {
     }
 }
 ```
-数据源bean实现此即可后，例如：通过方法.addFragment(1, ImageFragment::class.java)(也就是说type==1时生成ImageFragment，这些逻辑adapter帮你操作了)
+数据源bean实现此接口后，例如：通过方法.addFragment(1, ImageFragment::class.java)(也就是说type==1时生成ImageFragment，这些逻辑adapter帮你操作了)
 
 <br>
 
