@@ -223,7 +223,7 @@ public class ImageFragment extends Fragment implements SmartFragmentImpl<SourceB
 
 * 底部已经不能翻页时，调用。将不再触发底部监听。
   ```java
-  mAdapter..finishLoadMoreWithNoMoreData()
+  mAdapter.finishLoadMoreWithNoMoreData()
   ```
 
 * 结束头部刷新状态，继续触发监听
