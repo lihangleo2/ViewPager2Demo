@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             btnSide.jumpToActivityWithClick(SideUseActivity::class.java)
             btnIndicatorUse.jumpToActivityWithClick(IndicatorActivity::class.java)
             btnRemoveUse.jumpToActivityWithClick(RemoveActivity::class.java)
+            btnNodataUse.jumpToActivityWithClick(NoDataActivity::class.java)
         }
     }
 

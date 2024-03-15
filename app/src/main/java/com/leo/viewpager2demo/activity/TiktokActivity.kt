@@ -3,7 +3,6 @@ package com.leo.viewpager2demo.activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.gyf.immersionbar.ktx.immersionBar
 import com.leo.viewpager2demo.bean.SourceBean
@@ -12,8 +11,6 @@ import com.leo.viewpager2demo.fragment.ImageFragment
 import com.leo.viewpager2demo.fragment.TextFragment
 import com.leo.viewpager2demo.util.DataUtil
 import com.smart.adapter.SmartViewPager2Adapter
-import com.smart.adapter.interf.OnLoadMoreListener
-import com.smart.adapter.interf.OnRefreshListener
 import com.smart.adapter.interf.OnRefreshLoadMoreListener
 
 /**

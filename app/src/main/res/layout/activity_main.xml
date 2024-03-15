@@ -111,4 +111,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_indicator_use" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btn_nodata_use"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="无数据源的使用"
+        app:bl_pressed_solid_color="#80459E63"
+        app:bl_unPressed_solid_color="#459E63"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_remove_use" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
