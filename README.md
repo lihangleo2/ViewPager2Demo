@@ -56,6 +56,13 @@
 |<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/indicator_add.gif" alt="Sample"  width="100%">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/slide.gif" alt="Sample"  width="100%">
 <br/>
 
+* ### 3.1.0及以后无数据源的使用 [跳转此文档](https://github.com/lihangleo2/ViewPager2Demo?tab=readme-ov-file#%E5%9B%9B%E6%97%A0%E7%BA%BF%E5%BE%AA%E7%8E%AF%E5%92%8C%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8)
+|极速实现app的tab切换|重写点击事件，判断是否可切换页面|
+|:---:|:---:|
+|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/nodata_use.gif" alt="Sample">|<img src="https://github.com/lihangleo2/ViewPager2Demo/blob/main/showImages/nodata_use_click.gif" alt="Sample">
+<br/>
+
+
 
 
 ## 添加依赖
@@ -71,7 +78,7 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:3.0.0'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:3.1.0'
    }
   ```
 <br/>
