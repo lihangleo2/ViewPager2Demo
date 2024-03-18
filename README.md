@@ -572,6 +572,7 @@ mBinding.viewPager2.adapter = mAdapter
             })
     }
 ```
+<br>
 
 
 ## 赞赏
