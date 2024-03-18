@@ -23,6 +23,7 @@ class NoDataActivity : AppCompatActivity() {
     private val mAdapter by lazy {
         SmartViewPager2Adapter.NoDataBuilder(this)
             .overScrollNever()
+            .canScroll(false)
             .smoothScroll(false)
             .bindViews(mBinding.tabHome, mBinding.tabFile, mBinding.tabManager, mBinding.tabMine)
             .build(mBinding.viewPager2)
@@ -62,7 +63,7 @@ class NoDataActivity : AppCompatActivity() {
     }
 
 
-    private fun testApi(){
+    private fun testApi() {
         //以下代码会报错，因为setFragmens里NoDataFragment类型出现了多次
         //var mFragment = mAdapter.getFragment<NoDataFragment>()
 

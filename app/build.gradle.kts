@@ -11,8 +11,8 @@ android {
         applicationId = "com.leo.viewpager2demo"
         minSdk = 29
         targetSdk = 31
-        versionCode = 301
-        versionName = "3.0.1"
+        versionCode = 310
+        versionName = "3.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -65,6 +65,6 @@ dependencies {
     implementation("com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.6")
     implementation("com.geyifeng.immersionbar:immersionbar:3.2.2")
     implementation("com.geyifeng.immersionbar:immersionbar-ktx:3.2.2")
-//    implementation("com.github.lihangleo2:SmartViewPager2Adapter:2.0.1")
+//    implementation("com.github.lihangleo2:SmartViewPager2Adapter:3.1.0")
     implementation(project(mapOf("path" to ":smartVpageAdapterlibrary")))
 }
