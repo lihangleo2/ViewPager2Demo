@@ -528,9 +528,12 @@ mBinding.viewPager2.adapter = mAdapter
                 override fun onClick(v: View): Boolean {
                     when(v.id){
                         R.id.tab_mine->{
-                            //假如有些app可先不登录，但是点击"我的"tab按钮，判断没有登录去登录并返回false，那么adapter就不会去切换tab
+                            //假如有些app可先不登录，但是点击"我的"tab按钮，判断没有登录去登录并返回false，
+                            //那么adapter就不会去切换tab
                             if (isLogin){
-                                //跳转登录页，而且补选中tab，返回false
+                                //跳转登录页
+                                //伪代码...
+                                //返回false不会选中tab
                                 return false
                             }
                             //去登录操作...
@@ -549,7 +552,7 @@ mBinding.viewPager2.adapter = mAdapter
         //泛型直接获取，【注意】：前提是setFragmentList() 时，fragment类型必须唯一，如，不能有2个HomeFragment，否则会报错
         var mHomeFragment = mAdapter.getFragment<HomeFragment>()
 
-        //也可以不适用泛型获取，但转下
+        //也可以不使用泛型获取
         var mHomeFragment = mAdapter.getFragment(0) as HomeFragment
     }
 ```
