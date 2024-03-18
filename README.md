@@ -489,8 +489,90 @@ public abstract BaseFragment{
     }
 
 ```
-
 <br/>
+
+## 七、无数据源的使用 
+作者在使用时发现，长长会出现，无数据源的情况，比如我们大部分app的首页，我的这些页面切换功能，故增添了此api
+### 7.1、几行代码快速实现切换
+注意这里是没数据源的，此刻的fragment是不需实现上面的接口  
+步骤一：
+```java
+    private val mAdapter by lazy {
+        SmartViewPager2Adapter.NoDataBuilder(this)
+            //如果你不需要按钮联动，也可不用这个
+            .bindViews(mBinding.tabHome, mBinding.tabFile, mBinding.tabManager, mBinding.tabMine)
+            .build(mBinding.viewPager2)
+            //也支持List<Fragment>
+            .setFragmentList(ImageFragment(),TextFragment(),NoDataFragment(),TestApiFragment())
+    }
+```
+<br>
+
+步骤二：设置给viewpager2（做完这下就搞定了，你没看错）
+```java
+mBinding.viewPager2.adapter = mAdapter
+```
+<br>
+
+### 7.2、点击事件处理
+如果你点击按钮1需要实现额外逻辑，只需重写以下监听.setOnClickListener(callback)
+```java
+    private val mAdapter by lazy {
+        SmartViewPager2Adapter.NoDataBuilder(this)
+            //如果你不需要按钮连动，也可不用这个
+            .bindViews(mBinding.tabHome, mBinding.tabFile, mBinding.tabManager, mBinding.tabMine)
+            .build(mBinding.viewPager2)
+            //也支持List<Fragment>，里面是你new出来的fragment实例
+            .setFragmentList(HomeFragment(),FileFragment(),ManagerFragment(),MineFragment())
+            .setOnClickListener(object :SmartNoDataAdapter.OnClickListener{
+                override fun onClick(v: View): Boolean {
+                    when(v.id){
+                        R.id.tab_mine->{
+                            //假如有些app可先不登录，但是点击"我的"tab按钮，判断没有登录去登录并返回false，那么adapter就不会去切换tab
+                            if (isLogin){
+                                //跳转登录页，而且补选中tab，返回false
+                                return false
+                            }
+                            //去登录操作...
+                        }
+                    }
+                    return true
+                }
+            })
+    }
+```
+<br>
+
+### 7.3、获取Fragment实例
+```java
+    private fun getRealFragment() {
+        //泛型直接获取，【注意】：前提是setFragmentList() 时，fragment类型必须唯一，如，不能有2个HomeFragment，否则会报错
+        var mHomeFragment = mAdapter.getFragment<HomeFragment>()
+
+        //也可以不适用泛型获取，但转下
+        var mHomeFragment = mAdapter.getFragment(0) as HomeFragment
+    }
+```
+
+## 无数据源Adapter方法详解
+无数据源Adapter大部分api和有数据源的Adapter一样，除了舍去了跟数据有关的api,新增的方法如下：
+```java
+    private val mAdapterOther by lazy {
+        SmartViewPager2Adapter.NoDataBuilder(this)
+            .overScrollNever() //去掉阴影
+            .canScroll(false) //viewPager2不可手势滑动
+            .smoothScroll(false) //点击tab后，viewPager2直接切换，不带滚动动画
+            .bindViews(mBinding.tabHome, mBinding.tabFile, mBinding.tabManager, mBinding.tabMine) //与按钮联动,如果不需要可不写
+            .build(mBinding.viewPager2)
+            .setFragmentList(HomeFragment(),FileFragment(),ManagerFragment(),MineFragment())//设置fragment实例
+            .setOnClickListener(object : SmartNoDataAdapter.OnClickListener { //重写联动按钮点击事件，返回false，不切换tab
+                override fun onClick(v: View): Boolean {
+                    return true
+                }
+            })
+    }
+```
+
 
 ## 赞赏
 
