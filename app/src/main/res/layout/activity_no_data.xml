@@ -1,19 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.viewpager2.widget.ViewPager2
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/viewPager2"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        />
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/tab_layout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:bl_solid_color="@color/white"
+        app:bl_stroke_color="#f1f1f1"
+        app:bl_stroke_position="top"
+        app:bl_stroke_width="1dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- 首页 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/tab_home"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tab_file"
+        app:layout_constraintTop_toTopOf="@+id/tab_layout">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/lottie_home"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:clickable="false"
+            app:bl_selected_drawable="@mipmap/ic_main_home_select"
+            app:bl_unSelected_drawable="@mipmap/ic_main_home_unselect"
+            tools:src="@mipmap/ic_main_home_select" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:includeFontPadding="false"
+            android:text="首页"
+            android:textSize="12sp"
+            app:bl_selected_textColor="#000000"
+            app:bl_unSelected_textColor="#AFAEAE" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- 文档 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/tab_file"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tab_home"
+        app:layout_constraintRight_toLeftOf="@id/tab_manager"
+        app:layout_constraintTop_toTopOf="@+id/tab_layout"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/lottie_document"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:clickable="false"
+            app:bl_selected_drawable="@mipmap/ic_main_document_select"
+            app:bl_unSelected_drawable="@mipmap/ic_main_document_unselect"
+            tools:src="@mipmap/ic_main_document_select" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_multiplex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:includeFontPadding="false"
+            android:text="文档"
+            android:textSize="12sp"
+            app:bl_selected_textColor="#000000"
+            app:bl_unSelected_textColor="#AFAEAE" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- 管理 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/tab_manager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tab_file"
+        app:layout_constraintRight_toLeftOf="@id/tab_mine"
+        app:layout_constraintTop_toTopOf="@id/tab_layout">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/lottie_tools"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            app:bl_selected_drawable="@mipmap/ic_main_tools_select"
+            app:bl_unSelected_drawable="@mipmap/ic_main_tools_unselect"
+            tools:src="@mipmap/ic_main_tools_select" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:includeFontPadding="false"
+            android:text="管理"
+            android:textSize="12sp"
+            app:bl_selected_textColor="#000000"
+            app:bl_unSelected_textColor="#AFAEAE" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!-- 我的 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/tab_mine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tab_manager"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tab_layout">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/lottie_mine"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            app:bl_selected_drawable="@mipmap/ic_main_mine_select"
+            app:bl_unSelected_drawable="@mipmap/ic_main_mine_unselect"
+            tools:src="@mipmap/ic_main_mine_select" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:includeFontPadding="false"
+            android:text="我的"
+            android:textSize="12sp"
+            app:bl_selected_textColor="#000000"
+            app:bl_unSelected_textColor="#AFAEAE" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
