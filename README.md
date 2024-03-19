@@ -530,13 +530,13 @@ mBinding.viewPager2.adapter = mAdapter
                         R.id.tab_mine->{
                             //假如有些app可先不登录，但是点击"我的"tab按钮，判断没有登录去登录并返回false，
                             //那么adapter就不会去切换tab
-                            if (isLogin){
+                            if (!isLogin){
                                 //跳转登录页
                                 //伪代码...
                                 //返回false不会选中tab
                                 return false
                             }
-                            //去登录操作...
+                            //登录后的操作...
                         }
                     }
                     return true
