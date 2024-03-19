@@ -549,7 +549,8 @@ mBinding.viewPager2.adapter = mAdapter
 ### 7.3、获取Fragment实例
 ```java
     private fun getRealFragment() {
-        //泛型直接获取，【注意】：前提是setFragmentList() 时，fragment类型必须唯一，如，不能有2个HomeFragment，否则会报错
+        //泛型直接获取，【注意】：前提是setFragmentList() 时，fragment类型必须唯一，
+        //如，不能有2个HomeFragment，否则会报错
         var mHomeFragment = mAdapter.getFragment<HomeFragment>()
 
         //也可以不使用泛型获取
