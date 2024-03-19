@@ -566,10 +566,13 @@ mBinding.viewPager2.adapter = mAdapter
             .overScrollNever() //去掉阴影
             .canScroll(false) //viewPager2不可手势滑动
             .smoothScroll(false) //点击tab后，viewPager2直接切换，不带滚动动画
-            .bindViews(mBinding.tabHome, mBinding.tabFile, mBinding.tabManager, mBinding.tabMine) //与按钮联动,如果不需要可不写
+            //与按钮联动,如果不需要可不写
+            .bindViews(mBinding.tabHome, mBinding.tabFile, mBinding.tabManager, mBinding.tabMine) 
             .build(mBinding.viewPager2)
-            .setFragmentList(HomeFragment(),FileFragment(),ManagerFragment(),MineFragment())//设置fragment实例
-            .setOnClickListener(object : SmartNoDataAdapter.OnClickListener { //重写联动按钮点击事件，返回false，不切换tab
+            //设置fragment实例
+            .setFragmentList(HomeFragment(),FileFragment(),ManagerFragment(),MineFragment())
+            //重写联动按钮点击事件，返回false，不切换tab
+            .setOnClickListener(object : SmartNoDataAdapter.OnClickListener { 
                 override fun onClick(v: View): Boolean {
                     return true
                 }
