@@ -431,8 +431,8 @@ public abstract BaseFragment{
             //构造参数（3.0后部分api不可动态改变，规范及正确使用）
             .overScrollNever() //取消viewPager2滑动边缘阴影
             .canScroll(false) //viewPager2不可手势滑动
-            .setOffscreenPageLimit(5) //滑动到preLoadLimit触发预加载监听
-            .setPreLoadLimit(3) //设置viewPager2缓存
+            .setOffscreenPageLimit(5) //设置viewPager2缓存
+            .setPreLoadLimit(3) //滑动到preLoadLimit触发预加载监听
             .addFragment(1, ImageFragment::class.java) //添加要生成的fragment
             .addFragment(2, TextFragment::class.java)
             .addDefaultFragment(TextFragment::class.java) //找不到对应type的数据时生成的默认fragment
