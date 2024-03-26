@@ -78,7 +78,7 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:3.1.1'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:3.1.2'
    }
   ```
 <br/>
