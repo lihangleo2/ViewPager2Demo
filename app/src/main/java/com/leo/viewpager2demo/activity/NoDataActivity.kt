@@ -31,23 +31,24 @@ class NoDataActivity : AppCompatActivity() {
                 NoDataFragment.newInstance("文档", R.color.background_file),
                 NoDataFragment.newInstance("管理", R.color.background_manager),
                 TestApiFragment.newInstance("我的", R.color.background_mine))
-            .setOnClickListener(object : SmartNoDataAdapter.OnClickListener {
-                override fun onClick(v: View): Boolean {
-                    when (v.id) {
-                        R.id.tab_mine -> {
-                            return if (isMemberFalg == 0) {
-                                ToastUtils.showLong("模拟需要登录: 请前往登录。再次点击既登录状态")
-                                isMemberFalg++
-                                false
-                            } else {
-                                ToastUtils.showLong("选中我的，根据返回值是否选中页面")
-                                true
-                            }
-                        }
-                    }
-                    return true
-                }
-            })
+                //如果切换tab需要额外逻辑，才能选中的话，可以实现以下方法，通过返回值true or false来确定是否切换tab
+//            .setOnClickListener(object : SmartNoDataAdapter.OnClickListener {
+//                override fun onClick(v: View): Boolean {
+//                    when (v.id) {
+//                        R.id.tab_mine -> {
+//                            return if (isMemberFalg == 0) {
+//                                ToastUtils.showLong("模拟需要登录: 请前往登录。再次点击既登录状态")
+//                                isMemberFalg++
+//                                false
+//                            } else {
+//                                ToastUtils.showLong("选中我的，根据返回值是否选中页面")
+//                                true
+//                            }
+//                        }
+//                    }
+//                    return true
+//                }
+//            })
     }
 
     //模拟会员Flag
