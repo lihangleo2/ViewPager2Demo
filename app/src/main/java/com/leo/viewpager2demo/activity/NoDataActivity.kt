@@ -27,7 +27,7 @@ class NoDataActivity : AppCompatActivity() {
             .smoothScroll(false)
             .bindViews(mBinding.tabHome, mBinding.tabFile, mBinding.tabManager, mBinding.tabMine)
             .build(mBinding.viewPager2)
-            .setFragmentList(NoDataFragment.newInstance("首页", R.color.background_home),
+            .addData(NoDataFragment.newInstance("首页", R.color.background_home),
                 NoDataFragment.newInstance("文档", R.color.background_file),
                 NoDataFragment.newInstance("管理", R.color.background_manager),
                 TestApiFragment.newInstance("我的", R.color.background_mine))
