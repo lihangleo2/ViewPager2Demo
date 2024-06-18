@@ -78,7 +78,7 @@
 - app build.gradle添加如下
    ```java
   dependencies {
-           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:3.1.2'
+           implementation 'com.github.lihangleo2:SmartViewPager2Adapter:3.1.3'
    }
   ```
 <br/>
@@ -503,7 +503,7 @@ public abstract BaseFragment{
             .bindViews(mBinding.tabHome, mBinding.tabFile, mBinding.tabManager, mBinding.tabMine)
             .build(mBinding.viewPager2)
             //也支持List<Fragment>
-            .setFragmentList(ImageFragment(),TextFragment(),NoDataFragment(),TestApiFragment())
+            .addData(ImageFragment(),TextFragment(),NoDataFragment(),TestApiFragment())
     }
 ```
 <br>
