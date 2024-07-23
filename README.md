@@ -2,7 +2,7 @@
 [![](https://jitpack.io/v/lihangleo2/SmartViewPager2Adapter.svg)](https://jitpack.io/#lihangleo2/SmartViewPager2Adapter)
 [![](https://img.shields.io/badge/license-MIT-green)](https://github.com/lihangleo2/ViewPager2Demo/blob/main/LICENSE)
 ## 特点功能
-完全脱离xml，所有效果只需要通过api调用
+完全脱离xml，所有效果只需要通过api调用。[掘金地址，什么收藏量比star量高！！](https://juejin.cn/post/7276440197621432359)
 ```
 具体功能：
     1. 两句代码实现抖音列表效果
