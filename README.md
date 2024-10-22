@@ -22,7 +22,7 @@
 ## SmartViewPager2Adapter动态
 * [SmartViewPager2Adapter更新动态及以往版本](https://github.com/lihangleo2/ViewPager2Demo/wiki)
 * 3.0后，更新了部分api,具体可以点击上面链接查看。从2.0升级到3.0的同学请注意。[不方便转移的，请查看2.0文档](https://github.com/lihangleo2/ViewPager2Demo/blob/main/README2.0.md)
-
+* 特别提醒，viewPager2的fragment的可见属性isVisible如果失效了可以用官方给的fragment里的isResumed代替。在使用此库的时候，希望各位注意。（并非本库bug）
 
 ## Demo
 为录制流畅，截图分辨率比较模糊。可在下方扫描二维码下载apk  
